@@ -39,9 +39,9 @@ chsh -s \`which fish\`
 * if you want to reverse the changes just type
 `chsh -s (which bash)`
 * fish configuration is in _~/.config/fish/config.fish_
-* for showing full path in fish `funced prompt_pwd` replace shown result with
+* for showing full path in fish type `funced prompt_pwd` and replace shown result with
 ```
-function prompt_pwd \--description 'Print the current working directory, NOT shortened to fit the prompt'
+function prompt_pwd --description 'Print the current working directory, NOT shortened to fit the prompt'
     if test "$PWD" != "$HOME"
         printf "%s" (echo $PWD|sed -e 's|/private||' -e "s|^$HOME|~|")
     else
@@ -51,20 +51,18 @@ function prompt_pwd \--description 'Print the current working directory, NOT sho
 end
 ```
 
-*type enter
+* type enter
 
 ### Touchpad
 
-#type command
-synclient -l
-	#that will show us what all we can change
-	#type 
-synclient TapButton1=0
-	#to disable touch on tap 
-  #to have this behavior on startup, you need to add this line as a script(.sh) to /usr/local/bin/
+* type command `synclient -l`
+
+That will show us what all we can change.
+
+* type `synclient TapButton1=0`to disable touch on tap. To have this behavior on startup, you need to add this line as a script(.sh) to _/usr/local/bin/_
       #e.g. /usr/local/bin/touchRegulation.sh
 
-VIVADO
+### Vivado
 
 #download ~20Gb Vivado installation file for all OS and find xsetup script and run it(as root)
 #after installation is done, do :
