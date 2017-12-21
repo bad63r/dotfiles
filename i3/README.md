@@ -61,29 +61,40 @@ That will show us what all we can change.
 
 * type `synclient TapButton1=0`to disable touch on tap. To have this behavior on startup, you need to add this line as a script(.sh) to _/usr/local/bin/_
 
-e.g. /usr/local/bin/touchRegulation.sh
+e.g. _/usr/local/bin/touchRegulation.sh_
 
 ### Vivado
 
-#download ~20Gb Vivado installation file for all OS and find xsetup script and run it(as root)
-#after installation is done, do :
-		#it has to be bash shell for running vivado
-		#sudo dpkg --add-architecture i386
-		#sudo apt-get update
-		#sudo dpkg --add-architecture i386, run sudo apt-get update and sudo apt-get install libc6:i386 libncurses5:i386 libstdc++6:i386
-		#sudo apt-get install libstdc++6:i386 libfontconfig1:i386 \
+* download ~20Gb Vivado installation file(previous versions are smaller) for all OS and find xsetup script and run it(as root)
+* after installation is done you need to know that has to be Bash shell for running Vivado
+
+`sudo dpkg --add-architecture i386`
+
+`sudo apt-get update`
+
+`sudo dpkg --add-architecture i386`
+
+* run
+
+`sudo apt-get update`
+
+`sudo apt-get install libc6:i386 libncurses5:i386 libstdc++6:i386`
+
+`sudo apt-get install libstdc++6:i386 libfontconfig1:i386 \
 libXext6:i386 libxext6:i386 libice6:i386 libXrender1:i386 \
- libglib2.0-0:i386 libsm6:i386 libsm6:i386
+ libglib2.0-0:i386 libsm6:i386 libsm6:i386`
 		
-		#installing cable driver(you can't do that during installation if you didn't start install script as root, if you started script with root i think you would have that option
-			#cd /opt/Xilinx/Vivado/2015.1/data/xicom/cable_drivers/lin64/install_script/install_drivers/
-			#sudo ./install_drivers
+* installing cable driver(you can't do that during installation if you didn't start install script as root, if you started script with root I think you would have that option
 
+`cd /opt/Xilinx/Vivado/2015.1/data/xicom/cable_drivers/lin64/install_script/install_drivers/`
 
-		#starting vivado
-		#source /opt/Xilinx/Vivado/2015.1/settings64.sh
-		#vivado & 
-		#both commands you have to do in bash shell
+`sudo ./install_drivers`
+
+* starting vivado `source /opt/Xilinx/Vivado/2015.1/settings64.sh`
+
+`vivado &`
+
+* both commands you have to do in bash shell
 
 #VIBER
 
