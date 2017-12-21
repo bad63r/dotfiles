@@ -74,8 +74,6 @@ e.g. _/usr/local/bin/touchRegulation.sh_
 
 `sudo dpkg --add-architecture i386`
 
-* run
-
 `sudo apt-get update`
 
 `sudo apt-get install libc6:i386 libncurses5:i386 libstdc++6:i386`
@@ -96,15 +94,13 @@ libXext6:i386 libxext6:i386 libice6:i386 libXrender1:i386 \
 
 * both commands you have to do in bash shell
 
-#VIBER
+### Viber
 
-#download viber from official website for linux
-#install it with sudo dpkg -i viber.deb
-
-#after that you need to fix sound issue
-#go to 
-sudo vim /etc/pulse/default.pa
-# find line load-module module-udev-detect and change it to : load-module module-udev-detect tsched=0
+* download Viber from official website for Linux
+* install it with `sudo dpkg -i viber.deb`
+* after that you need to fix sound issue for ThinkPad laptop on Viber
+* type `sudo vim /etc/pulse/default.pa`
+* find line _load-module module-udev-detect_ and change it to _load-module module-udev-detect tsched=0_
 
 
 
