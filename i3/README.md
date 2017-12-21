@@ -4,31 +4,30 @@ This is my knowledge collected over some time using i3 wm. You can find all of t
 every configuration file for mentioned programs can be found in my [dotfiles](https://github.com/bad63r/dotfiles). Also you should be aware that this guide is focused
 on Debian based systems or more preciesly in this case Ubuntu.
 
-### **Dunst** 
+### Dunst 
 
 [Dunst](https://dunst-project.org) is a lightweight replacement for the notification-daemons.
 
 Configuration:
 * install Dunst `sudo apt-get install dunst`
-* add .dunstrc to your home folder
+* add **.dunstrc** to your home folder
 * change notification manager going to
-`sudo vim /usr/share/dbus-1/services/org.freedesktop.Notifications.service` and change exec line to dunst location. Check dunst location with command called "whereis".
+`sudo vim /usr/share/dbus-1/services/org.freedesktop.Notifications.service` and change _**exec**_ line to dunst location. Check dunst location with command called "whereis"
 
 ### Fixing lid closed function
 
-* go to  /etc/systemd/logind.conf
+* go to  **/etc/systemd/logind.conf**
 `sudo vim /etc/systemd/logind.conf`
 * uncomment line "HandleLidSwitch" and change "suspend" to "ignore"
 * after configuring you need to restart for changes to get effect
 `systemctl restart systemd-logind`
 
-FISH SHELL
-	#install fish shell
-sudo apt-get install fish
-	#after that, we want to instal oh-my-fish for easier configuration or fisherman
-	#for that we need curl
+### Fish shell
+
+* install Fish shell `sudo apt-get install fish`
+* after that, we want to install oh-my-fish for easier configuration(for that we need curl and git)
+
 sudo apt-get install curl
-	#and git
 sudo apt-get install git
 	#after that go on github page of oh-my-fish and scroll little bit down and search for install paragraph
 	#copy text into terminal for making fish shell your default shell
