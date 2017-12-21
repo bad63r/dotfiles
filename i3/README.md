@@ -28,6 +28,7 @@ Configuration:
 * after that, we want to install **oh-my-fish** for easier configuration(for that we need **_curl_** and **_git_**)
 
 `sudo apt-get install curl`
+
 `sudo apt-get install git`
 
 * after that go on github page of oh-my-fish and scroll little bit down and search for install paragraph
@@ -37,7 +38,7 @@ Configuration:
 `chsh -s (which bash)`
 * fish configuration is in _~/.config/fish/config.fish_
 * for showing full path in fish `funced prompt_pwd` replace shown result with
-```function prompt_pwd --description 'Print the current working directory, NOT shortened to fit the prompt'
+```function prompt_pwd \--description 'Print the current working directory, NOT shortened to fit the prompt'
     if test "$PWD" != "$HOME"
         printf "%s" (echo $PWD|sed -e 's|/private||' -e "s|^$HOME|~|")
     else
