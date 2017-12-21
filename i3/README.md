@@ -34,7 +34,7 @@ Configuration:
 * after that go on github page of oh-my-fish and scroll little bit down and search for install paragraph
 * copy text into terminal for making fish shell your default shell
 ```
-chsh -s \`which fish\`
+chsh -s `which fish`
 ```
 * if you want to reverse the changes just type
 `chsh -s (which bash)`
@@ -60,7 +60,8 @@ end
 That will show us what all we can change.
 
 * type `synclient TapButton1=0`to disable touch on tap. To have this behavior on startup, you need to add this line as a script(.sh) to _/usr/local/bin/_
-      #e.g. /usr/local/bin/touchRegulation.sh
+
+                  e.g. /usr/local/bin/touchRegulation.sh
 
 ### Vivado
 
