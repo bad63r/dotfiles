@@ -10,11 +10,11 @@ on Debian based systems or more preciesly in this case Ubuntu.
 
 Configuring dunst:
 
-      * first we need to install it 
+First we need to install it
+
 `sudo apt-get install dunst`
 
-      - add .dunstrc to your home folder
-	#you don't need to include any line into i3 config file
+Add .dunstrc to your home folder.That's it. You don't need to include any line into i3 config file.
 	
 	#go into this location
 sudo vim /usr/share/dbus-1/services/org.freedesktop.Notifications.service
