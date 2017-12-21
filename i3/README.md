@@ -1,15 +1,19 @@
 # **My nooby guide for i3wm**
 
 This is my knowledge collected over some time using i3 wm. You can find all of this on the internet with a little bit of persistance, but here it's on one place. My
-every configuration file for mentioned program can be found in my [dotfiles](https://github.com/bad63r/dotfiles). 
+every configuration file for mentioned programs can be found in my [dotfiles](https://github.com/bad63r/dotfiles). Also you should be aware that this guide is focused
+on Debian based systems or more preciesly in this case Ubuntu.
 
 ### **Dunst** 
 
 [Dunst](https://dunst-project.org) is a lightweight replacement for the notification-daemons.
 
-Install dunst:
+Configuring dunst:
+
+      - first we need to install it 
 `sudo apt-get install dunst`
-	#add .dunstrc to your home folder
+
+      - add .dunstrc to your home folder
 	#you don't need to include any line into i3 config file
 	
 	#go into this location
