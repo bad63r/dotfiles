@@ -33,13 +33,15 @@ Configuration:
 
 * after that go on github page of oh-my-fish and scroll little bit down and search for install paragraph
 * copy text into terminal for making fish shell your default shell
-```chsh -s \`which fish\`
+```
+chsh -s \`which fish\`
 ```
 * if you want to reverse the changes just type
 `chsh -s (which bash)`
 * fish configuration is in _~/.config/fish/config.fish_
 * for showing full path in fish `funced prompt_pwd` replace shown result with
-```function prompt_pwd \--description 'Print the current working directory, NOT shortened to fit the prompt'
+```
+function prompt_pwd \--description 'Print the current working directory, NOT shortened to fit the prompt'
     if test "$PWD" != "$HOME"
         printf "%s" (echo $PWD|sed -e 's|/private||' -e "s|^$HOME|~|")
     else
