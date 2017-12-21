@@ -16,7 +16,7 @@ Configuration:
 
 ### Fixing lid closed function
 
-* go to  **/etc/systemd/logind.conf**
+* go to  _/etc/systemd/logind.conf_
 `sudo vim /etc/systemd/logind.conf`
 * uncomment line "HandleLidSwitch" and change "suspend" to "ignore"
 * after configuring you need to restart for changes to get effect
@@ -25,33 +25,30 @@ Configuration:
 ### Fish shell
 
 * install Fish shell `sudo apt-get install fish`
-* after that, we want to install oh-my-fish for easier configuration(for that we need curl and git)
+* after that, we want to install **oh-my-fish** for easier configuration(for that we need **_curl_** and **_git_**)
 
-sudo apt-get install curl
-sudo apt-get install git
-	#after that go on github page of oh-my-fish and scroll little bit down and search for install paragraph
-	#copy text into terminal for making fish shell your default shell
-chsh -s `which fish`
-		#if you want to reverse the changes just type
-chsh -s (which bash)
-	#fish configuration is in
-~/.config/fish/config.fish
-	#showing full path in fish
-funced prompt_pwd
-	#replace shown result with
-function prompt_pwd --description 'Print the current working directory, NOT shortened to fit the prompt'
+`sudo apt-get install curl`
+`sudo apt-get install git`
+
+* after that go on github page of oh-my-fish and scroll little bit down and search for install paragraph
+* copy text into terminal for making fish shell your default shell
+`chsh -s \`which fish\` `
+* if you want to reverse the changes just type
+`chsh -s (which bash)`
+* fish configuration is in _~/.config/fish/config.fish_
+* for showing full path in fish `funced prompt_pwd` replace shown result with
+`function prompt_pwd --description 'Print the current working directory, NOT shortened to fit the prompt'
     if test "$PWD" != "$HOME"
         printf "%s" (echo $PWD|sed -e 's|/private||' -e "s|^$HOME|~|")
     else
         echo '~'
     end
 
-end
-	#type enter
+end`
 
-	
-	
-TOUCHPAD
+*type enter
+
+### Touchpad
 
 #type command
 synclient -l
