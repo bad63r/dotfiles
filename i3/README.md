@@ -8,7 +8,7 @@ on Debian based systems or more preciesly in this case Ubuntu.
 
 [Dunst](https://dunst-project.org) is a lightweight replacement for the notification-daemons.
 
-How to configure it:
+### How to configure it:
 
     - install it first `sudo apt-get install dunst`
     - add .dunstrc to your home folder
