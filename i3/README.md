@@ -8,17 +8,10 @@ on Debian based systems or more preciesly in this case Ubuntu.
 
 [Dunst](https://dunst-project.org) is a lightweight replacement for the notification-daemons.
 
-###How to configure it:
-* install it first 
-
-
-
-
-
-	sudo apt-get install dunst
-    
-    * add .dunstrc to your home folder
-    - go into this location
+Configuration:
+* install it first `sudo apt-get install dunst`
+* add .dunstrc to your home folder
+* go into this location
 
 sudo vim /usr/share/dbus-1/services/org.freedesktop.Notifications.service
 
