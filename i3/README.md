@@ -33,7 +33,8 @@ Configuration:
 
 * after that go on github page of oh-my-fish and scroll little bit down and search for install paragraph
 * copy text into terminal for making fish shell your default shell
-```chsh -s \`which fish\` ```
+```chsh -s \`which fish\`
+```
 * if you want to reverse the changes just type
 `chsh -s (which bash)`
 * fish configuration is in _~/.config/fish/config.fish_
@@ -45,7 +46,8 @@ Configuration:
         echo '~'
     end
 
-end```
+end
+```
 
 *type enter
 
