@@ -1,6 +1,9 @@
-# **MY GUIDE FOR I3WM**
+# **My nooby guide for i3wm**
 
-**DUNST**
+This is my knowledge collected over some time using i3 wm. You can find all of this on the internet with a little bit of persistance, but here it's on one place.
+**Dunst**
+
+[Dunst](https://dunst-project.org) is a lightweight replacement for the notification-daemons.
 
 Install dunst:
 `sudo apt-get install dunst`
