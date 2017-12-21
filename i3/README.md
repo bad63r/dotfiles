@@ -12,7 +12,7 @@ on Debian based systems or more preciesly in this case Ubuntu.
 
     - install it first 
 
-	`sudo apt-get install dunst`
+	sudo apt-get install dunst
     
     - add .dunstrc to your home folder
     - go into this location
