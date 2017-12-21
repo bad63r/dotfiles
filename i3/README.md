@@ -10,11 +10,11 @@ on Debian based systems or more preciesly in this case Ubuntu.
 
 ### How to configure it:
 
-    - install it first 
+    * install it first 
 
 	sudo apt-get install dunst
     
-    - add .dunstrc to your home folder
+    * add .dunstrc to your home folder
     - go into this location
 
 sudo vim /usr/share/dbus-1/services/org.freedesktop.Notifications.service
