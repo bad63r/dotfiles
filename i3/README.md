@@ -10,7 +10,7 @@ on Debian based systems or more preciesly in this case Ubuntu.
 
 Configuring dunst:
 
-      - first we need to install it 
+      * first we need to install it 
 `sudo apt-get install dunst`
 
       - add .dunstrc to your home folder
