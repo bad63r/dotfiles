@@ -11,11 +11,12 @@ on Debian based systems or more preciesly in this case Ubuntu.
 Configuration:
 * install Dunst `sudo apt-get install dunst`
 * add .dunstrc to your home folder
-* go into this location with `sudo vim /usr/share/dbus-1/services/org.freedesktop.Notifications.service` and change exec line to dunst location, check dunst location with command called "whereis"
+* change notification manager going to `sudo vim /usr/share/dbus-1/services/org.freedesktop.Notifications.service` and change exec line to dunst location. Check dunst location with command called "whereis"
 
-FIXING LID CLOSED FUNCTION
-	#go to /etc/systemd/logind.conf
-sudo vim /etc/systemd/logind.conf
+### FIXING LID CLOSED FUNCTION
+
+* go to  /etc/systemd/logind.conf
+`sudo vim /etc/systemd/logind.conf`
 	#uncomment line "HandleLidSwitch" and change "suspend" to "ignore"
 	#for changes go into effect
 systemctl restart systemd-logind
