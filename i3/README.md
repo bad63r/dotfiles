@@ -65,8 +65,8 @@ e.g. _/usr/local/bin/touchRegulation.sh_
 
 ### Vivado
 
-* download ~20Gb Vivado installation file(previous versions are smaller) for all OS and find xsetup script and run it(as root)
-* after installation is done you need to know that has to be Bash shell for running Vivado
+* download ~20Gb Vivado installation file(previous versions are smaller) for all OS and find xsetup script and run it(as root and in the Bash shell)
+* after installation is done, **DO NOT RUN VIVADO YET** you need to install rest of the goodies first.
 
 `sudo dpkg --add-architecture i386`
 
