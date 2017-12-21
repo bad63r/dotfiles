@@ -8,9 +8,9 @@ on Debian based systems or more preciesly in this case Ubuntu.
 
 [Dunst](https://dunst-project.org) is a lightweight replacement for the notification-daemons.
 
-How to configure it:
+How to configure it.
 
-    - to install: `sudo apt-get install dunst`
+    - install it first `sudo apt-get install dunst`
     - add .dunstrc to your home folder.
     - That's it. You don't need to include any line into i3 config file.
 	
