@@ -1,4 +1,4 @@
-#MY GUIDE FOR I3WM
+# **MY GUIDE FOR I3WM**
 
 **DUNST**
 
