@@ -61,7 +61,7 @@ That will show us what all we can change.
 
 * type `synclient TapButton1=0`to disable touch on tap. To have this behavior on startup, you need to add this line as a script(.sh) to _/usr/local/bin/_
 
-                  e.g. /usr/local/bin/touchRegulation.sh
+e.g. /usr/local/bin/touchRegulation.sh
 
 ### Vivado
 
