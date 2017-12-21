@@ -9,13 +9,9 @@ on Debian based systems or more preciesly in this case Ubuntu.
 [Dunst](https://dunst-project.org) is a lightweight replacement for the notification-daemons.
 
 Configuration:
-* install it first `sudo apt-get install dunst`
+* install Dunst `sudo apt-get install dunst`
 * add .dunstrc to your home folder
-* go into this location
-
-sudo vim /usr/share/dbus-1/services/org.freedesktop.Notifications.service
-
-    - change exec line to dunst location, check dunst location with command called "whereis"
+* go into this location with `sudo vim /usr/share/dbus-1/services/org.freedesktop.Notifications.service` and change exec line to dunst location, check dunst location with command called "whereis"
 
 FIXING LID CLOSED FUNCTION
 	#go to /etc/systemd/logind.conf
