@@ -1,0 +1,28 @@
+  1 [global_config]
+  2 [keybindings]
+  3 [layouts]
+  4   [[default]]
+  5     [[[child1]]]
+  6       parent = window0
+  7       type = Terminal
+  8     [[[window0]]]
+  9       parent = ""
+ 10       type = Window
+ 11 [plugins]
+ 12 [profiles]
+ 13   [[default]]
+ 14     background_color = "#1c1c1c"
+ 15     background_darkness = 0.72
+ 16     background_image = None
+ 17     background_type = transparent
+ 18     cursor_color = "#e2bbef"
+ 19     custom_command = env TERM=xterm-256color fish
+ 20     font = Noto Mono 10
+ 21     foreground_color = "#ddeedd"
+ 22     palette = "#3d352a:#cd5c5c:#86af80:#e8ae5b:#6495ed:#deb887:#b0c4de:#bbaa99:#554444:#cc5533:#88aa22:#ffa75d:#87ceeb:#996600:#b0c4de:#ddccbb"
+ 23     scrollbar_position = hidden
+ 24     show_titlebar = False
+ 25     use_custom_command = True
+~                                                                                                                                                                         
+~                                                                                                                                                                         
+~                         
