@@ -1,0 +1,70 @@
+ UPUTSTVO ZA ARCH LINUX
+
+
+1.Namestanje zvuka na KDE-u
+    -u terminalu kucamo $alsamixer
+    -sve skale povecamo do maxiumam (unmute uz pomoc 'm')
+    -zatim u terminalu kucamo #alsactl store da bi komp zapamtio sta smo radili
+    -iz terminala #pacman -S pulseaudio kdemultimedia-kmix
+    -reboot i gotovo  
+--------------------------------------------------------------------------------
+2.Namestanje Nvidia drajvera na KDE-u
+    -uradi van grafickog okruzenja(ctr+alt+F1)
+    -$sudo pacman -Rdd mesa-libgl && sudo pacman -S nvidia
+    -izbrisemo mesa-lib i instaliramo nvidia drajvere
+    -kucamo # nvidia-xconfig
+    -proverimo da li su izbrisani noaveau drajveri iz /etc/X11/xorg.conf.d/10-monitor.conf(koristi nano)
+    -reboot i nvidia drajveri ce blacklist noaveau 
+    -gotovo 
+--------------------------------------------------------------------------------
+3.Arhiver manager za KDE
+    -#pacman -S kdeutils-ark 
+    -gotovo 
+--------------------------------------------------------------------------------
+4.Pregledac slika za KDE
+    -#pacman -S gwenview
+    -gotovo 
+--------------------------------------------------------------------------------
+5.Korisne stvari nakon instalacije KDE-a
+    -#pacman -S gstreamer0.10-plugins flashplugin firefox
+    -gotovo 
+--------------------------------------------------------------------------------
+6.KDM
+    -on je instaliran zajedno sa kdebase
+    -omogucimo kdm uz pomoc komande $systemctl enable kdm.service
+    -reboot
+    -gotovo 
+--------------------------------------------------------------------------------
+7.Base instalacija
+    -pogledaj video od hacker313; install arch
+--------------------------------------------------------------------------------
+8.Instaliranje yaourt-a
+    -kucaj aur u google-u
+    -udji u prvo sto ti otvori
+    -kucaj u search yaourt i klik na to
+    -skini tarball od yaourt i package-query u isti folder
+    -kada smo skunili fajlove preko terminala udjemo u taj folder
+    -$tar -xf package.query.tar.gz(oavj fajl ne znam tacan naziv)
+    -kad je napravio taj folder udjemo u njega sa $cd package query
+    -u tom folderu od package queryy kucamo $makepkg -cis
+    -izadjemo nakon instalacije iz tog foldera i sad smo u fodleru gde se nalaze yaourt i package-query
+    -$cd yaourt
+    -ponovimo postupak ko za package-query
+    -tar -xf yaourt
+    -udjemo u novo napravljeno folder
+    -$makepkg -cis 
+    -instaliramo i gotovo 
+--------------------------------------------------------------------------------
+9.Wireless tokom instalacije
+    -$iw dev(pokazuje ime wi-fi kartice)
+    -$wifi-menu wlp5s0
+    -taj net ce nam sluziti tokom instalacije
+    -ako nesto nece da radi : $killall dhcpcd
+			      $ip link set down wlp5s0
+    -da bi imali net posle reboot-a nakon instalacije potrebno je pre generisanja linux slike  da uradimo sledece
+    -$pacman -Syu
+    -$pacman -S iw wpa_supplicant
+    -$pacman -S dialog
+----------------------------------------------------------------------------------
+10.Korisne stvarcice
+	-sudo pacman -S gstreamer0.10-plugins flashplugin
