@@ -196,7 +196,8 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod+9 exec i3lock -i ~/Pictures/truper.png
 
 #turn off computer
-bindsym $mod+0 exec shutdown now
+#bindsym $mod+0 exec shutdown now
+bindsym $mod+0 exec zenity --question && shutdown now
 
 # Resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
@@ -262,3 +263,4 @@ exec --no-startup-id nitrogen --restore
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id /usr/local/bin/touchRegulation.sh
+exec --no-startup-id "setxkbmap -model pc105 -layout us,rs,rs,rs -variant ,latin,,rue -option grp:alt_shift_toggle"
