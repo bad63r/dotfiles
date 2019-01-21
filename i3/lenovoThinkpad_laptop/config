@@ -194,7 +194,8 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 #i3lock
-bindsym $mod+9 exec i3lock -i ~/Pictures/truper.png
+    #if you need .png picture just use: convert imagename.jpg -resize 1366x768! newimagename.png
+bindsym $mod+9 exec i3lock -i ~/.i3/lockscreen.png
 
 #turn off computer
 #bindsym $mod+0 exec shutdown now
