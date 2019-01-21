@@ -35,6 +35,7 @@ bindsym XF86AudioLowerVolume exec --no-startup-id amixer -c 1 sset Master playba
 bindsym XF86AudioMute exec --no-startup-id amixer -D pulse set Master 1+ toggle # mute sound
 
 
+
 #Media buttons control
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
@@ -210,7 +211,7 @@ mode "resize" {
         bindsym j resize grow width 5 px or 5 ppt
         bindsym k resize grow height 5 px or 5 ppt
         bindsym l resize shrink height 5 px or 5 ppt
-        bindsym odiaeresis resize grow width 5 px or 5 ppt
+        bindsym semicolon resize grow width 5 px or 5 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
