@@ -64,11 +64,62 @@ URxvt*mapAlert:                         true
 ! True: the mouse wheel scrolls a page full. False: the mouse wheel scrolls five lines [default]
 URxvt*mouseWheelScrollPage:             false
 
+!COLOURS
 ! Use the specified colour as the windows background colour [default White]
-URxvt*background:                       #300a24
+!URxvt*background:                       #300a24
 
 !  Use the specified colour as the windows foreground colour [default Black]
-URxvt*foreground:                       #ffffff
+!URxvt*foreground:                       #ffffff
+!
+! Generated with :
+! XRDB2Xreources.py
+!
+*.foreground:  #fffaf4
+*.background:  #0e1019
+*.cursorColor: #fffaf4
+!
+! Black
+*.color0:      #232323
+*.color8:      #444444
+!
+! Red
+*.color1:      #ff000f
+*.color9:      #ff2740
+!
+! Green
+*.color2:      #8ce10b
+*.color10:     #abe15b
+!
+! Yellow
+*.color3:      #ffb900
+*.color11:     #ffd242
+!
+! Blue
+*.color4:      #008df8
+*.color12:     #0092ff
+!
+! Magenta
+*.color5:      #6d43a6
+*.color13:     #9a5feb
+!
+! Cyan
+*.color6:      #00d8eb
+*.color14:     #67fff0
+!
+! White
+*.color7:      #ffffff
+*.color15:     #ffffff
+!
+! Bold, Italic, Underline
+*.colorBD:     #9e9c9a
+!*.colorIT:
+!*.colorUL:
+
+! Use the specified colour to disp1ay underlined characters when the foreground colour is the default.
+URxvt*colorUL:                          yellow
+
+! If set, use the specified colour as the colour for the underline itself. If unset, use the foreground colour
+URxvt*underlineColor:                   yellow
 
 ! EXTENSIONS
 URxvt.perl-ext: default,url-select,keyboard-select,clipboard
@@ -88,91 +139,15 @@ URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
 URxvt.clipboard.autocopy: true
 URxvt.clipboard.copycmd:  xclip -i -selection clipboard
 URxvt.clipboard.pastecmd: xclip -o -selection clipboard
-
-!matcher: clickable links
-!URxvt.url-launcher: /usr/bin/firefox
-!URxvt.matcher.button: 1
-
 URxvt.keyboard-select.clipboard: true
-! Use the specified colour to disp1ay bold characters when the foreground colour is the default.
-! URxvt*colorBD:                        color
 
-! Use the specified colour to disp1ay italic characters when the foreground colour is the default
-! URxvt*colorIT:                        color
-
-! Use the specified colour to disp1ay underlined characters when the foreground colour is the default.
-URxvt*colorUL:                          yellow
-
-! Use the specified colour as the background for reverse video characters.
-! URxvt*colorRV:                        color
-
-! If set, use the specified colour as the colour for the underline itself. If unset, use the foreground colour
-URxvt*underlineColor:                   yellow
-
-! Use the specified colour for the scrollbar [default #B2B2B2]
-! URxvt*scrollColor:                    color
-
-! Use the specified colour for the scrollbars trough area [default #969696]. Only relevant for rxvt (non XTerm/NeXT) scrollbar
-! URxvt*troughColor:                    color
-
-! If set, use the specified colour as the background for highlighted characters. If unset, use reverse video
-! URxvt*highlightColor:                 color
-
-! If set and highlightColor is set, use the specified colour as the foreground for highlighted characters
-! URxvt*highlightTextColor:               White
-
-! True: Make the cursor underlined. False: Make the cursor a box [default]
-!URxvt*cursorUnderline:                  false
-
-! True: blink the cursor. False: do not blink the cursor [default];
-!URxvt*cursorBlink:                      true
-
-! Use the specified colour for the cursor.  The default is to use the foreground colour
-!URxvt*cursorColor:                      Magenta
-
-! Use the specified colour for the colour of the cursor text.  For this to take effect, cursorColor must also be specified.  The default is to use the background colour
-!URxvt*cursorColor2:                     White
-
-! True: blank the pointer when a key is pressed or after a set number of seconds of inactivity. False: the pointer is always visible [default]
-!URxvt*pointerBlank:                     true
-
-! Specifies number of seconds before blanking the pointer [default 2]. Use a large number (e.g. 987654321) to effectively disable the timeout
-!URxvt*pointerBlankDelay:                4
-
-! Mouse pointer foreground colour
-!URxvt*pointerColor:                     green
-
-! Mouse pointer background colour
-!URxvt*pointerColor2:                    blue
-
-! Set the name used to label the window's icon or displayed in an icon manager window, it also sets the window's title unless it is explicitly set
-! URxvt*iconName:                       string
-
-! Set the application icon pixmap; option -icon.
-! URxvt*iconFile:                       file
-
-! Set window title string, the default title is the command-line specified after the -e option, if any, otherwise the application name
-! URxvt*title:                          string
-
-
-
-
-
-! Select the fonts to be used. This is a comma separated list of font names that are checked in order when trying to find glyphs for characters
-!URxvt*font:                             -xos4-terminus-medium-*-*-*-14-*-*-*-*-*-iso8859-15,xft:terminus:pixelsize:12
-!URxvt*boldFont:                         -xos4-terminus-bold-*-*-*-14-*-*-*-*-*-iso8859-15,xft:terminus:bold:pixelsize:12
-!URxvt*italicFont:                       xft:Bitstream Vera Sans Mono:italic:autohint=true:pixelsize=12
-!URxvt*boldItalicFont:                   xft:Bitstream Vera Sans Mono:bold:italic:autohint=true:pixelsize=12U
 
 URxvt*font:     xft:bitstream vera sans mono:size=10:antialias=true
 URxvt*boldFont: xft:bitstream vera sans mono:bold:size=10:antialias=true
 
 
-! When font styles are not enabled, or this option is enabled (True default), bold/blink font styles imply high intensity foreground/background colours
-! URxvt*intensityStyles:                boolean
-
 ! Save number lines in the scrollback buffer [default 64]. This resource is limited on most machines to 65535
-URxvt*saveLines:                        0
+URxvt*saveLines:                        1000
 
 ! Double-buffering for xft (default enabled).  On some card/driver combination enabling it slightly decreases performance, on most it greatly helps it. The slowdown is small, so it should normally be enabled
 URxvt*buffered:                         true
@@ -192,34 +167,15 @@ URxvt*buffered:                         true
 ! Turn on/off hold window after exit support. If enabled, urxvt will not immediately destroy its window when the program executed within it exits. Instead, it will wait till it is being killed or closed by the user.
 URxvt*hold:                             false
 
-! External border of number pixels. This resource is limited to 100
-! URxvt*externalBorder:                 number
 
 ! Internal border of number pixels. This resource is limited to 100
 URxvt*internalBorder:
 
-! The colour of the border around the text area and between the scrollbar and the text.
-! URxvt*borderColor:                    color
-
-
-! Specifies number of lines (pixel height) to insert between each row of the disp1ay [default 0]
-! URxvt*lineSpace:                      number
-
-! Letter spacing adjustment
-! URxvt*letterSpace:                    number
-
-! Disable the usage of the built-in block graphics/line drawing characters and just rely on what the specified fonts provide. Use this if you have a good font and want to use its block graphic glyphs
-! URxvt*skipBuiltinGlyphs:              boolean
-
-! The string to send when the backspace key is pressed. If set to DEC or unset it will send Delete (code 127) or, with control, Backspace (code 8)
-! URxvt*backspacekey:                   string
-
-! The string to send when the delete key (not the keypad delete key) is pressed. If unset it will send the sequence traditionally associated with the Execute key.
-! URxvt*deletekey:                      string
 
 ! Specify a command pipe for vt100 printer [default lpr(1)].  Use Print to initiate a screen dump to the printer and Ctrl-Print or Shift-Print to include the scrollback
 URxvt*print-pipe:                       cat > $HOME/$(echo urxvt.dump.$(date +'%Y%M%d%H%m%S'))
 
+!DEFAULT IF NEEDED. NOT MY SETTINGS AFTER THIS LINE
 ! Set the key to be interpreted as the Meta key to: alt, meta, hyper, super, mod1, mod2, mod3, mod4, mod5
 ! URxvt*modifier:                       modifier
 
@@ -286,29 +242,4 @@ URxvt*print-pipe:                       cat > $HOME/$(echo urxvt.dump.$(date +'%
 
 
 
-
-! URxvt*selection-pastebin.cmd:         string
-! URxvt*selection-pastebin.url:         string
-
-! URxvt*tab-bg:                         colour
-! URxvt*tab-fg:                         colour
-! URxvt*tabbar-bg:                      colour
-! URxvt*tabbar-fg:                      colour
-
-
-! URxvt*xrm:                            string
-! URxvt*background.border:              boolean
-! URxvt*background.expr:                string
-! URxvt*background.interval:            seconds
-
-! URxvt*bell-command:                   string
-
-! URxvt*matcher.button:                 string
-! URxvt*matcher.launcher:               string
-! URxvt*matcher.launcher.*:             string
-! URxvt*matcher.pattern.*:              string
-! URxvt*matcher.rend.*:                 string
-
-! URxvt*remote-clipboard.fetch:         string
-! URxvt*remote-clipboard.store:         string
 
