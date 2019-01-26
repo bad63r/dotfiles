@@ -19,7 +19,7 @@ font pango:Cantarell 9
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec terminator
+bindsym $mod+Return exec urxvt
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -266,3 +266,4 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id /usr/local/bin/touchRegulation.sh
 exec --no-startup-id "setxkbmap -model pc105 -layout us,rs,rs,rs -variant ,latin,,rue -option grp:alt_shift_toggle"
+exec --no-startup-id urxvtd -q -o -f
