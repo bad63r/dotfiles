@@ -147,7 +147,7 @@ URxvt*boldFont: xft:bitstream vera sans mono:bold:size=10:antialias=true
 
 
 ! Save number lines in the scrollback buffer [default 64]. This resource is limited on most machines to 65535
-URxvt*saveLines:                        1000
+URxvt*saveLines:                        10000
 
 ! Double-buffering for xft (default enabled).  On some card/driver combination enabling it slightly decreases performance, on most it greatly helps it. The slowdown is small, so it should normally be enabled
 URxvt*buffered:                         true
