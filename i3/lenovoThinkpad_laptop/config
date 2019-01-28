@@ -51,7 +51,7 @@ bindsym $mod+Shift+F3 exec gksu pcmanfm
 bindsym $mod+F5 exec clementine
 bindsym Print exec "scrot -e 'mv $f ~/Screenshots'; sleep 1; exec notify-send 'screenshot has been saved to ~/Screenshots'"
 bindsym $mod+Ctrl+x exec xkill
-bindsym $mod+F2 exec terminator -e ranger
+bindsym $mod+F2 exec urxvt -e ranger
 
 # change focus
 bindsym $mod+j focus left
@@ -209,7 +209,7 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize grow width 5 px or 5 ppt
+        bindsym j resize shrink width 5 px or 5 ppt
         bindsym k resize grow height 5 px or 5 ppt
         bindsym l resize shrink height 5 px or 5 ppt
         bindsym semicolon resize grow width 5 px or 5 ppt
