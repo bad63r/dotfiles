@@ -102,6 +102,17 @@ libXext6:i386 libxext6:i386 libice6:i386 libXrender1:i386 \
 * type `sudo vim /etc/pulse/default.pa`
 * find line _load-module module-udev-detect_ and change it to _load-module module-udev-detect tsched=0_
 
+### youtube-dl - command line youtube downloader
+
+* install it with `sudo apt install youtube-dl`
+* to see all available options type `man youtube-dl`
+* to download video: `youtube-dl -F` to see all available formats to download. After that `youtubedl -f name_of_code "link_URL" `
+* to download audio: `youtube-dl -x "url"`
+
+### moc - command line music player
+
+* install it with `sudo apt install moc`
+* run it with `mocp`
 
 
 
