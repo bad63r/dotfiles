@@ -10,6 +10,7 @@ on Debian based systems or more preciesly in this case Ubuntu.
 * 
   `# Cmnd alias specification`
   `Cmnd_Alias POWER = /sbin/shutdown\, /sbin/reboot`
+  
   `YOUR_USER ALL=NOPASSWD: POWER` 
 
 * Add those lines to `/etc/sudoers`
