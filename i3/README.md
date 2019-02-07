@@ -4,6 +4,15 @@ This is my knowledge collected over some time using i3 wm. You can find all of t
 every configuration file for mentioned programs can be found in my [dotfiles](https://github.com/bad63r/dotfiles). Also you should be aware that this guide is focused
 on Debian based systems or more preciesly in this case Ubuntu.
 
+### Power shorcuts in i3wm
+
+* to use shutdown and reboot without sudo
+* 
+  `# Cmnd alias specification`
+  `Cmnd_Alias POWER = /sbin/shutdown\, /sbin/reboot`
+  `YOUR_USER ALL=NOPASSWD: POWER` 
+
+* Add those lines to `/etc/sudoers`
 ### Dunst 
 
 [Dunst](https://dunst-project.org) is a lightweight replacement for the notification-daemons.
