@@ -9,6 +9,7 @@ on Debian based systems or more preciesly in this case Ubuntu.
 * to use shutdown and reboot without sudo
 * 
   `# Cmnd alias specification`
+
   `Cmnd_Alias POWER = /sbin/shutdown\, /sbin/reboot`
   
   `YOUR_USER ALL=NOPASSWD: POWER` 
@@ -23,6 +24,7 @@ Configuration:
 * add **.dunstrc** to your home folder
 * change notification manager going to
 `sudo vim /usr/share/dbus-1/services/org.freedesktop.Notifications.service` and change _**exec**_ line to dunst location. Check dunst location with command called "whereis"
+* install fonts for better looking dunst: `sudo apt-get install fonts-hack-ttf`
 
 ### Fixing lid closed function
 
