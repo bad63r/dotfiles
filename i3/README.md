@@ -116,15 +116,18 @@ libXext6:i386 libxext6:i386 libice6:i386 libXrender1:i386 \
 
 ### Youtube-dl - command line YouTube downloader
 
-* install it with `sudo apt install youtube-dl`
+* install it with: 
+`sudo apt install python-pip`
+
+`sudo pip install youtube-dl`
 * to see all available options type `man youtube-dl`
 * to download video: `youtube-dl -F` to see all available formats to download. After that `youtubedl -f name_of_code "link_URL" `
 * to download audio: `youtube-dl -x "url"`
 
-### Moc - command line music player
+### cmus - command line music player
 
-* install it with `sudo apt install moc`
-* run it with `mocp`
+* install it with `sudo apt install cmus`
+* run it with `cmus`
 
 
 
