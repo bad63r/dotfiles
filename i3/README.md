@@ -51,6 +51,7 @@ chsh -s `which fish`
 * if you want to reverse the changes just type
 `chsh -s (which bash)`
 * fish configuration is in _~/.config/fish/config.fish_
+* for showing full path in fish shell type:`set -U fish_prompt_pwd_dir_length 0` 
 * for showing full path in fish type `funced prompt_pwd` and replace shown result with
 ```
 function prompt_pwd --description 'Print the current working directory, NOT shortened to fit the prompt'
