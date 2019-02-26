@@ -50,6 +50,7 @@ bindsym $mod+F2 exec urxvt -e ranger
 bindsym $mod+F3 exec pcmanfm
 bindsym $mod+Shift+F3 exec gksu pcmanfm
 bindsym $mod+F4 exec emacs
+bindsym $mod+m exec thunderbird
 bindsym $mod+F5 exec clementine
 bindsym Print exec "scrot -e 'mv $f ~/Screenshots'; sleep 1; exec notify-send 'screenshot has been saved to ~/Screenshots'"
 bindsym $mod+Ctrl+x exec xkill
@@ -108,12 +109,6 @@ bindsym $mod+Shift+s sticky toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
-
-# Workspace names
-# set $ws1 1:
-# set $ws2 2:
-# set $ws3 3:
-# set $ws3 4:
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -191,6 +186,10 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
+#turn off computer
+#bindsym $mod+0 exec shutdown now
+bindsym $mod+0 exec zenity --question && shutdown -h now
+
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
@@ -198,9 +197,6 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
     #if you need .png picture just use: convert imagename.jpg -resize 1366x768! newimagename.png
 bindsym $mod+9 exec i3lock -i ~/.i3/lockscreen.png
 
-#turn off computer
-#bindsym $mod+0 exec shutdown now
-bindsym $mod+0 exec zenity --question && shutdown now
 
 # Resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
@@ -261,9 +257,9 @@ bar {
 }
 
 # Autostart applications
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id /usr/lib/policykit-1/polkit-agent-helper-1
 exec --no-startup-id nitrogen --restore
-exec --no-startup-id nm-applet
+#exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id /usr/local/bin/touchRegulation.sh
 exec --no-startup-id "setxkbmap -model pc105 -layout us,rs,rs,rs -variant ,latin,,rue -option grp:alt_shift_toggle"
