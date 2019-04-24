@@ -113,14 +113,21 @@ libXext6:i386 libxext6:i386 libice6:i386 libXrender1:i386 \
 * to download video: `youtube-dl -F` to see all available formats to download. After that `youtubedl -f name_of_code "link_URL" `
 * to download audio: `youtube-dl -x "url"`
 
-### cmus - command line music player
+### Cmus - command line music player
 
 * install it with `sudo apt install cmus`
 * run it with `cmus`
 
+### theming my i3wm
 
+* theme: Graybird [GTK2/3]
+* icons: Flat-Remix-Blue-Light [GTK2/3]
+* terminal font(in temrinal): Hack
 
+### speeding up system
 
+* install _preload_ - program which loads programs into ram before use
+`sudo apt install preload`
 
 
 
