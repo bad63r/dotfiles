@@ -11,4 +11,4 @@ Then afer that you can simply run program with:
 For shortcuts look into config file.
 
 
-![](https://imgur.com/xluROZh)
+![](https://i.imgur.com/xluROZh.jpg)
