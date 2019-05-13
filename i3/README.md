@@ -118,16 +118,26 @@ libXext6:i386 libxext6:i386 libice6:i386 libXrender1:i386 \
 * install it with `sudo apt install cmus`
 * run it with `cmus`
 
-### theming my i3wm
+### Theming my i3wm
 
 * theme: Graybird [GTK2/3]
 * icons: Flat-Remix-Blue-Light [GTK2/3]
 * terminal font(in temrinal): Hack
 
-### speeding up system
+### Speeding up system
 
 * install _preload_ - program which loads programs into ram before use
 `sudo apt install preload`
+
+### Tlp - power managment
+
+* install tlp: `sudo apt install tlp`
+* to enable it type: `sudo systemctl start tlp`
+* check if it is active: `sudo systemctl status tlp`
+* to make it autostart as service on every boot: `sudo systemctl enable tlp`
+* to check if it is really working install power top and check last card "tunables": `sudo apt install powertop`
+
+Tlp is active only when laptop is working on battery. As soon as you are on AC it is not working. Because it is focused on power saving, there can be performance droping in favour of battery life when your laptop is using only battery.
 
 
 
