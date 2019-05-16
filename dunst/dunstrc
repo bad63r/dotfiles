@@ -1,6 +1,9 @@
-
+     
 [global]
-    font = Terminus 9
+    font = Hack 10
+
+    frame_width = 2
+    frame_color = "#8EC07C"
 
     # Allow a small subset of html markup:
     #   <b>bold</b>
@@ -12,7 +15,7 @@
     # <http://developer.gnome.org/pango/stable/PangoMarkupFormat.html>.
     # If markup is not allowed, those tags will be stripped out of the
     # message.
-    allow_markup = yes
+    markup = yes
 
     # The format of the message.  Possible variables are:
     #   %a  appname
@@ -43,7 +46,7 @@
     # Show age of message if message is older than show_age_threshold
     # seconds.
     # Set to -1 to disable.
-    show_age_threshold = 60
+    show_age_threshold = -1
 
     # Split notifications into multiple lines if they don't fit into
     # geometry.
@@ -65,7 +68,7 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "300x5-40+30"
+    geometry = "300x50-15+49"
 
     # Shrink window if it's smaller than the width.  Will be ignored if
     # width is 0.
@@ -74,7 +77,7 @@
     # The transparency of the window.  Range: [0; 100].
     # This option will only work if a compositing window manager is
     # present (e.g. xcompmgr, compiz, etc.).
-    transparency = 0
+    transparency = 5
 
     # Don't remove messages, if the user is idle (no mouse or keyboard input)
     # for longer than idle_threshold seconds.
@@ -95,22 +98,22 @@
     #
     # If this option is set to mouse or keyboard, the monitor option
     # will be ignored.
-    follow = mouse
+    follow = none
 
     # Should a notification popped up from history be sticky or timeout
     # as if it would normally do.
     sticky_history = yes
 
     # Maximum amount of notifications kept in history
-    history_length = 20
+    history_length = 15
 
     # Display indicators for URLs (U) and actions (A).
-    show_indicators = yes
+    show_indicators = no
 
     # The height of a single line.  If the height is smaller than the
     # font height, it will get raised to the font height.
     # This adds empty space above and under the text.
-    line_height = 0
+    line_height = 3
 
     # Draw a line of "separator_height" pixel height between two
     # notifications.
@@ -118,10 +121,10 @@
     separator_height = 2
 
     # Padding between text and separator.
-    padding = 8
+    padding = 6
 
     # Horizontal padding.
-    horizontal_padding = 8
+    horizontal_padding = 6
 
     # Define a color for the separator.
     # possible values are:
@@ -144,13 +147,9 @@
 
     # Align icons left/right/off
     icon_position = off
-
     # Paths to default icons.
-    icon_folders = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+    icon_path = /home/bad63r/.icons/Flat-Remix-Blue-Light/status/scalable:/home/bad63r/.icons/Flat-Remix-Blue-Light/devices/scalable
 
-[frame]
-    width = 1
-    color = "#424242"
 
 [shortcuts]
 
@@ -176,19 +175,23 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#222222"
-    foreground = "#888888"
-    timeout = 5
+
+    frame_color = "#3B7C87"
+    foreground = "#3B7C87"
+    background = "#191311"
+    timeout = 4
 
 [urgency_normal]
-    background = "#222222"
-    foreground = "#568081"
-    timeout = 5
+    frame_color = "#5B8234"
+    foreground = "#5B8234"
+    background = "#191311"
+    timeout = 6
 
 [urgency_critical]
-    background = "#222222"
-    foreground = "#B14D4C"
-    timeout = 5
+    frame_color = "#B7472A"
+    foreground = "#B7472A"
+    background = "#191311"
+    timeout = 8
 
 
 # Every section that isn't one of the above is interpreted as a rules to

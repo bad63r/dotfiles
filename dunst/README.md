@@ -1,1 +1,2 @@
-Put file .dunstrc in your home folder for settings to take effect.
+* Create directory ~/.config/dunst: `mkdir ~/.config/dunst`
+* Put file dunstrc in *~/.config/dunst/*
