@@ -19,14 +19,16 @@ font pango:Cantarell 9
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec urxvt -bc
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
-bindsym $mod+d exec "rofi -modi window,drun,find:~/.local/share/rofi/finder.sh  -show drun -sidebar-mode"
+bindsym $mod+d exec "rofi -modi window,drun,find:~/.local/share/rofi/finder.sh  -show drun -sidebar-mode -terminal urxvt"
 #--no-startup-id i3-dmenu-desktop
  #dmenu_run 
+
+bindsym $mod+Tab exec rofi -show window
 
 #Pulse audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -c 1 sset Master playback 2%+
@@ -264,4 +266,4 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id /usr/local/bin/touchRegulation.sh
 exec --no-startup-id "setxkbmap -model pc105 -layout us,rs,rs,rs -variant ,latin,,rue -option grp:alt_shift_toggle"
-exec --no-startup-id urxvtd -q -o -f
+exec --no-startup-id urxvtd -q -o -f 
