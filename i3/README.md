@@ -139,6 +139,8 @@ libXext6:i386 libxext6:i386 libice6:i386 libXrender1:i386 \
 
 Tlp is active only when laptop is working on battery. As soon as you are on AC it is not working. Because it is focused on power saving, there can be performance droping in favour of battery life when your laptop is using only battery.
 
+### Fsearch - Powerful tool for searching 
+
 
 
 
