@@ -11,9 +11,14 @@ set $mod Mod4
 for_window [class="^Firefox$"] border none
 for_window [class="^Thunderbird$"] border none
 
+# Fixing any floating window by default to that size. It can be resized manually after that by win + right click.
+# It solved problem with firefox's pop up window being overesized and out of the computer's display.
+floating_maximum_size 1200 x 750
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Cantarell 9
+#font pango:Cantarell 9
+font Hack 9
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
@@ -25,6 +30,8 @@ bindsym $mod+Return exec urxvt -bc
 bindsym $mod+Shift+q kill
 
 bindsym $mod+d exec "rofi -modi window,drun,find:~/.local/share/rofi/finder.sh  -show drun -sidebar-mode -terminal urxvt"
+#no-startup-id i3-dmenu-desktop
+#"rofi -modi window,drun,find:~/.local/share/rofi/finder.sh  -show drun -sidebar-mode -terminal urxvt"
 #--no-startup-id i3-dmenu-desktop
  #dmenu_run 
 
@@ -36,7 +43,6 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -c 1 sset Master playba
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -c 1 sset Master playback 2%-
 #pactl set-sink-volume 0 -5% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id amixer -D pulse set Master 1+ toggle # mute sound
-
 
 
 #Media buttons control
@@ -267,3 +273,5 @@ exec --no-startup-id xfce4-power-manager
 exec --no-startup-id /usr/local/bin/touchRegulation.sh
 exec --no-startup-id "setxkbmap -model pc105 -layout us,rs,rs,rs -variant ,latin,,rue -option grp:alt_shift_toggle"
 exec --no-startup-id urxvtd -q -o -f 
+## this is starting emacs daemon so emacsclient can run without problems
+exec --no-startup-id emacs --daemon
