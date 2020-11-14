@@ -1,7 +1,25 @@
-# spacemacs
+# Spacemacs
 
-My spacemacs config
+My spacemacs config. Copy spacemacs file from this git repo into *~/.spacemacs*.
 
 Added new packages and some shortcuts.
 
-_Stolen mostly from [@mekanix](https://github.com/mekanix)_
+I figured out how to run spacemacs as a server on Linux. That enables me to run neatly spacemacs in one frame, opening all files from gui file browser and from 
+spacemacs itself.
+
+- First, to even enable that feauture to run as a server, you need to add two lines in your ~/.spacemacs configuration file in **
+(defun dotspacemacs/init ()** section. Or just copy my config ...
+```
+   dotspacemacs-enable-server t
+   dotspacemacs-persistent-server t
+```
+
+- After that you need to configure shorcut that is called when you invoke the solo spacemacs or when opening in gui file browswer. To do that, locate yourself in
+*/usr/share/applications/*. Then copy **emacs.desktop** file from this git repo into */usr/share/applications/*.
+
+- Now after you have done that you need to finish last step and that is to place **emacsclient_script.sh** from this git repo into */usr/local/bin*
+  For that you would need to use sudo.
+  
+- Done. Enjoy :)
+
+
