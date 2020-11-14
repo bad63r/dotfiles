@@ -7,8 +7,8 @@ Added new packages and some shortcuts.
 I figured out how to run spacemacs as a server on Linux. That enables me to run neatly spacemacs in one frame, opening all files from gui file browser and from 
 spacemacs itself.
 
-- First, to even enable that feauture to run as a server, you need to add two lines in your ~/.spacemacs configuration file in **
-(defun dotspacemacs/init ()** section. Or just copy my config ...
+- First, to even enable that feauture to run as a server, you need to add two lines in your ~/.spacemacs configuration file in **(defun dotspacemacs/init ()** 
+section. Or you can copy my spacemacs config.
 ```
    dotspacemacs-enable-server t
    dotspacemacs-persistent-server t
@@ -21,7 +21,7 @@ spacemacs itself.
   For that you would need to use sudo. Emacs.desktop file is calling for **emacsclient_script.sh** so that is the reason why we need to copy it. It can be any 
   location just then you need to change in emacs.desktop the path where this script is located.
   
-- And to make it even more convenient, make alias in your *~/.bashrc*. Find where are other aliases located and add line as below or copy my **.bashrc** file to \
+- And to make it even more convenient, make alias in your *~/.bashrc*. Find where are other aliases located and add line as below or copy my **.bashrc** file to 
 that location.
 ```
 alias emacs='/usr/local/bin/emacsclient_script.sh'
