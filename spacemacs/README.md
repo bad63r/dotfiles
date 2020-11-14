@@ -18,7 +18,7 @@ spacemacs itself.
 */usr/share/applications/*. Then copy **emacs.desktop** file from this git repo into */usr/share/applications/*.
 
 - Now after you have done that you need to finish last step and that is to place **emacsclient_script.sh** from this git repo into */usr/local/bin*
-  For that you would need to use sudo.
+  For that you would need to use sudo. Emacs.desktop file is calling for **emacsclient_script.sh** so that is the reason why we need to copy it. It can be any location just than you need to change in emacs.desktop the path where this script is located.
   
 - Done. Enjoy :)
 
