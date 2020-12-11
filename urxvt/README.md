@@ -5,7 +5,7 @@ All configurations are done in `~/.Xresources`. For full functionality of the co
 ```/usr/lib/x86_64-linux-gnu/urxvt/perl/ ```
 1)keyboard-select 
 2)url-select
-3)clipboard
+3)clipboard (```sudo apt install xclip```)
 
 You need to install Hack fonts with: `sudo apt-get install fonts-hack-ttf` for better looking urxvt.
 
