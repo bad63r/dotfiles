@@ -141,6 +141,11 @@ Tlp is active only when laptop is working on battery. As soon as you are on AC i
 
 ### Fsearch - Powerful tool for searching 
 
+### i3-workspace-names-daemon
+
+* check github page for installation and all settings
+`sudo pip3 install i3-workspace-names-daemon`
+
 
 
 
