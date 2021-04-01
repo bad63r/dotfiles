@@ -146,6 +146,17 @@ Tlp is active only when laptop is working on battery. As soon as you are on AC i
 * check github page for installation and all settings
 `sudo pip3 install i3-workspace-names-daemon`
 
+### adding sudo password prompt to programs that need it
+
+* install packages:
+
+`sudo apt install policykit-desktop-privileges`
+`sudo apt install policykit-1-gnome`
+
+* add this to end of your i3wm config if it is not already added
+
+`exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &`
+
 
 
 
