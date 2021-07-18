@@ -38,9 +38,9 @@ bindsym $mod+d exec "rofi -modi window,drun,find:~/.local/share/rofi/finder.sh  
 bindsym $mod+Tab exec rofi -show window
 
 #Pulse audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -c 1 sset Master playback 2%+
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -c 1 sset Master playback 3%+
 #pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -c 1 sset Master playback 2%-
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -c 1 sset Master playback 3%-
 #pactl set-sink-volume 0 -5% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id amixer -D pulse set Master 1+ toggle # mute sound
 
@@ -204,7 +204,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 #i3lock
     #if you need .png picture just use: convert imagename.jpg -resize 1366x768! newimagename.png
-bindsym $mod+9 exec i3lock -i ~/.i3/lockscreen.png
+bindsym $mod+9 exec i3lock -t -i ~/.i3/lockscreen.png
 
 
 # Resize window (you can also use the mouse for that)
@@ -272,5 +272,11 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id /usr/local/bin/touchRegulation.sh
 exec --no-startup-id "setxkbmap -model pc105 -layout us,rs,rs,rs -variant ,latin,,rue -option grp:alt_shift_toggle"
+## Adds graphical interface for language options that setkbmap provides
+exec --no-startup-id gxkb
 exec --no-startup-id urxvtd -q -o -f 
+## adds name of open programs to the workspaces name
 exec_always --no-startup-id exec i3-workspace-names-daemon
+## this prompts sudo password for apps that needs it
+exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+
