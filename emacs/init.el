@@ -1,14 +1,19 @@
 ; Disable defaul welcome screen
 (setq inhibit-startup-message t)
 
+
 (scroll-bar-mode -1)        ; Disable visible scrollbar
 (tool-bar-mode -1)          ; Disable the toolbar
 (tooltip-mode -1)           ; Disable tooltips
 (set-fringe-mode 10)        ; Give some breathing room
 
 (menu-bar-mode -1)            ; Disable the menu bar
+(auto-fill-mode -1)         ; Disables line breaks
 
 (setq backup-directory-alist `(("." . "~/.saves"))) ; Backup files, send them to ~/.saves
+
+; Disabled C-x C-b keybinding which can accidentaly happen
+(global-unset-key (kbd "C-x C-b"))
 
 ;; Set up the visible bell
 (setq visible-bell t)
@@ -146,6 +151,22 @@
     "t"  '(:ignore t :which-key "toggles")
     "tt" '(counsel-load-theme :which-key "choose theme")))
 
+; Fix that visual mode selection is still active after right indent
+; in evil mode
+(defun my/evil-shift-right ()
+  (interactive)
+  (evil-shift-right evil-visual-beginning evil-visual-end)
+  (evil-normal-state)
+  (evil-visual-restore))
+
+; Fix that visual mode selection is still active after left indent
+; in evil mode
+(defun my/evil-shift-left ()
+  (interactive)
+  (evil-shift-left evil-visual-beginning evil-visual-end)
+  (evil-normal-state)
+  (evil-visual-restore))
+
 (use-package evil
   :init
   (setq evil-want-integration t)
@@ -163,6 +184,19 @@
 
   (evil-set-initial-state 'messages-buffer-mode 'normal)
   (evil-set-initial-state 'dashboard-mode 'normal))
+
+  ; Fix left and right indent issue of evil mode
+  (evil-define-key 'visual global-map (kbd ">") 'my/evil-shift-right)
+  (evil-define-key 'visual global-map (kbd "<") 'my/evil-shift-left)
+
+; Fix of redo functionality in evil-mode
+(use-package undo-tree
+  :ensure t
+  :after evil
+  :diminish
+  :config
+  (evil-set-undo-system 'undo-tree)
+  (global-undo-tree-mode 1))
 
 (use-package evil-collection
   :after evil
