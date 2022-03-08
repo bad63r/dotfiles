@@ -220,8 +220,6 @@
 (setq custom-file "~/.emacs.d/emacs-custom.el")
 (load custom-file)
 
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; (use-package elpy								   ;;	        ;;
 ;;   :custom									   ;;	        ;;
