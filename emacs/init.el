@@ -216,7 +216,15 @@
     (setq projectile-project-search-path '("~/github")))
   (setq projectile-switch-project-action #'projectile-find-file-dwim))
 
+(defun show-and-copy-file-name ()
+  "Show the full path file name in the minibuffer."
+  (interactive)
+  (kill-new (buffer-file-name))
+  (message (buffer-file-name)))
 
+(global-set-key (kbd "C-c b") 'show-and-copy-file-name)
+
+; Set easy-customization file path
 (setq custom-file "~/.emacs.d/emacs-custom.el")
 (load custom-file)
 
