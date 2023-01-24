@@ -158,6 +158,10 @@ Tlp is active only when laptop is working on battery. As soon as you are on AC i
 `exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &`
 
 
+### Dependencies 
+
+* yt-dlp
+* xclip
 
 
 
