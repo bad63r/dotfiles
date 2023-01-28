@@ -144,6 +144,7 @@ Tlp is active only when laptop is working on battery. As soon as you are on AC i
 ### i3-workspace-names-daemon
 
 * check github page for installation and all settings
+* in my dotfiles there is configuration file(fallow README file from there)
 `sudo pip3 install i3-workspace-names-daemon`
 
 ### adding sudo password prompt to programs that need it
@@ -153,9 +154,14 @@ Tlp is active only when laptop is working on battery. As soon as you are on AC i
 `sudo apt install policykit-desktop-privileges`
 `sudo apt install policykit-1-gnome`
 
+### sound and brightness controls are set up in i3wm config file(go to github.com/bad63r/dotfiles/scripts and read guidline for each script)
+* brightness.sh
+* volumeUp.sh
+
 * add this to end of your i3wm config if it is not already added
 
 `exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &`
+
 
 
 ### Dependencies 
