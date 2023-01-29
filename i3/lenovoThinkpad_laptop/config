@@ -29,7 +29,7 @@ bindsym $mod+Return exec urxvt -bc
 # kill focused window
 bindsym $mod+Shift+q kill
 
-bindsym $mod+d exec "rofi -modi window,drun,find:~/.local/share/rofi/finder.sh  -show drun -sidebar-mode -terminal urxvt"
+bindsym $mod+d exec "rofi -show drun -terminal urxvt"
 #no-startup-id i3-dmenu-desktop
 #"rofi -modi window,drun,find:~/.local/share/rofi/finder.sh  -show drun -sidebar-mode -terminal urxvt"
 #--no-startup-id i3-dmenu-desktop
@@ -218,6 +218,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 #i3lock
     #if you need .png picture just use: convert imagename.jpg -resize 1366x768! newimagename.png
 bindsym $mod+9 exec i3lock -t -i ~/.i3/lockscreen.png
+
 
 
 # Resize window (you can also use the mouse for that)

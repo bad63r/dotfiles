@@ -1,7 +1,5 @@
-rofi.theme:		adapta-nokto
-rofi.modi:		window,drun,ssh
-rofi.modi:		window,drun,ssh,run
+rofi.theme:		nord.rasi
 rofi.show-icons:	true
-cycle: true
+modi: drun
 kb-mode-next: "Shift+Right,Control+Tab"
 kb-mode-previous: "Shift+Left,Control+ISO_Left_Tab"
