@@ -23,19 +23,21 @@ font Hack 9
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
-# start a terminal
-bindsym $mod+Return exec urxvt -bc
+# start a terminal; -icon argument is needed here for rofi -show window behavior only as there is some bug with urxvt and rofi window mode
+bindsym $mod+Return exec urxvt -icon "/usr/share/icons/Yaru/16x16/apps/bash.png" -bc
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 bindsym $mod+d exec "rofi -show drun -terminal urxvt"
+bindsym $mod+s exec "rofi -show ssh -terminal urxvt"
 #no-startup-id i3-dmenu-desktop
 #"rofi -modi window,drun,find:~/.local/share/rofi/finder.sh  -show drun -sidebar-mode -terminal urxvt"
 #--no-startup-id i3-dmenu-desktop
  #dmenu_run 
 
-bindsym $mod+Tab exec rofi -show window
+#rofi window mode, window format argument is here to depict tab like behavio just as I like it
+bindsym $mod+Tab exec rofi -show window -window-format "{c}              {t}"
 
 #Pulse audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.i3/volumeUp.sh           # Increase Volume
@@ -111,8 +113,7 @@ bindsym $mod+v split v;exec notify-send 'tile vertically'
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
+# change container layout (tabbed, toggle split)
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -153,14 +154,14 @@ bindsym $mod+Ctrl+7 move container to workspace number 7
 bindsym $mod+Ctrl+8 move container to workspace number 8
 
 # Move to workspace with focused container
-bindsym $mod+Shift+1 move container to workspace number 1; workspace 1
-bindsym $mod+Shift+2 move container to workspace number 2; workspace 2
-bindsym $mod+Shift+3 move container to workspace number 3; workspace 3
-bindsym $mod+Shift+4 move container to workspace number 4; workspace 4
-bindsym $mod+Shift+5 move container to workspace number 5; workspace 5
-bindsym $mod+Shift+6 move container to workspace number 6; workspace 6
-bindsym $mod+Shift+7 move container to workspace number 7; workspace 7
-bindsym $mod+Shift+8 move container to workspace number 8; workspace 8
+bindsym $mod+Shift+1 move container to workspace number 1; workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2; workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3; workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4; workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5; workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6; workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7; workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8; workspace number 8
 
 # Add link from clipboard to ~/Videos/youtube/list.txt
 bindsym $mod+y "exec --no-startup-id /usr/local/bin/addLinkToYTList.sh; exec notify-send 'Link added to YouTube(yt-dlp) list for later download.'"
@@ -249,7 +250,8 @@ mode "resize" {
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
      status_command i3status
-	font pango:Ubuntu 9
+     font pango:Ubuntu 9
+     workspace_min_width 80
 #varijanta 1-crvena 
 #colors{                     
 #
