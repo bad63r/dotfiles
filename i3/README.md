@@ -154,6 +154,12 @@ Tlp is active only when laptop is working on battery. As soon as you are on AC i
 `sudo apt install policykit-desktop-privileges`
 `sudo apt install policykit-1-gnome`
 
+### Fix urxvt (rxvt-unicode) to show correct icon in rofi -show windows mode
+* change file  `/usr/local/applications/rxvt-unicode.desktop`
+* find line which begins with Icon= and change it to `Icon=bash` ; more detail or icon to chose you can find in `/usr/share/icons`
+* for system to notice update do `sudo update-desktop-database`
+
+
 ### sound and brightness controls are set up in i3wm config file(go to github.com/bad63r/dotfiles/scripts and read guidline for each script)
 * brightness.sh
 * volumeUp.sh
