@@ -2,12 +2,11 @@
 
 This is my config for rofi.
 
-Put _config, adapta-nokto and android-notifications_ files in `~/.config/rofi/`. 
-
-Place _finder.sh_ file into `~/.local/share/rofi` and run `sudo chmod +x finder.sh`
+Put _config, nord.rasi_ files in `~/.config/rofi/`. 
 
 Then afer that you can simply run program with:
-`rofi -modi window,drun,find:~/.local/share/rofi/finder.sh  -show drun -sidebar-mode` or bind it to desired shortcut in i3wm and run it as that :)
+`bindsym $mod+d exec "rofi -show drun -terminal urxvt"
+` or bind it to desired shortcut in i3wm and run it as that :)
 For shortcuts look into config file.
 
 

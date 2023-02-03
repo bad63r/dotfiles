@@ -1,0 +1,25 @@
+{
+    "firefox": "firefox",
+    "chromium-browser": "chrome",
+    "chrome": "chrome",
+    "google-chrome": "chrome",
+    "urxvt": "terminal",
+    "thunderbird": "envelope",
+    "jetbrains-idea-ce": "edit",
+    "nautilus": "folder-open",
+    "clementine": "music",
+    "vlc": "play",
+    "signal": "comment",
+    "transmission-gtk" : "magnet",
+    "ranger"  : "folder",
+    "vivado": "microchip",
+    "code": "codepen",
+    "smplayer": "play",
+    "pcmanfm" : "folder",
+    "gnome-calculator": "calculator",
+    "fsearch": "list",
+    "tlp-ui": "cogs",
+    "skype": "skype",
+    "nitrogen": "wrench"
+
+}
