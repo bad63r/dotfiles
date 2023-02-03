@@ -66,7 +66,8 @@ bindsym XF86MonBrightnessUp exec --no-startup-id ~/.i3/brightness.sh up
 
 # Start Applications
 bindsym $mod+F1 exec firefox
-bindsym $mod+F2 exec urxvt -e ranger
+#icon argument for urxvt is here just because of rofi windows mode
+bindsym $mod+F2 exec urxvt -icon "/usr/share/icons/Yaru/16x16/places/user-home.png" -e ranger 
 bindsym $mod+F3 exec pcmanfm
 bindsym $mod+Shift+F3 exec gksu pcmanfm
 bindsym $mod+F4 exec emacs
