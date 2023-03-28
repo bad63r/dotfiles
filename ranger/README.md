@@ -9,3 +9,6 @@ Place those two files into ```~/.config/ranger```
 In this config pdf previewing is done like "work around" thing. Since version 1.9 ranger supports this option by default. Uncomment lines in `~/.config/ranger/scope.sh` in section pdf) to have previewing pdf works :) 
 
 To delete files with <DELETE> please install trash-cli with `sudo apt install trash-cli`
+
+To make sqlitestudio working by default for .db files, you need to make symbolic link from place where the installation is to /usr/local/bin. e.g. 
+`sudo ln -s /opt/SQLiteStudio/sqlitestudio /usr/local/bin`
