@@ -175,5 +175,18 @@ Tlp is active only when laptop is working on battery. As soon as you are on AC i
 * yt-dlp
 * xclip
 
+### Display Configuration Switching Setup
+
+* install arandr (gui for xrand which lets you manually setup your display layout): `sudo apt install arandr`
+* install autorandr (program which switch display layout automatically once detected): `sudo apt install autorandr`
+  * when you have your display layout ready(e.g. wihtout additional monitors), just execute command in terminal: `autorandr --save mysetup`
+  * when layout config is saved, type: `autorandr --default mysetup` 
+  * after that attach all your monitors and type: `autorandr --save docked_setup`
+  * and you are finished. autorandr is already running in background and will auto switch as he recognize new setup 
+  * in order to correct your background image after switching display config, there is an option to create script which will be executed after the switch is done
+    * create bash script called postswitch(NOTICE: there is no .sh as extension) in: `/home/bad63r/.config/autorandr/`
+	* content of the postswitch script which will autoalign correct wallpaper with Nitrogen: 
+	`#!/bin/bash `
+	`nitrogen --restore`
 
 
