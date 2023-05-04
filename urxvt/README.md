@@ -1,7 +1,9 @@
 # My config for urxvt
 Simple but it's all I need.
 
-All configurations are done in `~/.Xresources`. For full functionality of the configs you need to copy some perl scripts to
+All configurations are done in `~/.Xresources`. In order to see update of .Xresources file, do:
+```xrdb ~/.Xresources```
+For full functionality of the configs you need to copy some perl scripts to
 ```/usr/lib/x86_64-linux-gnu/urxvt/perl/ ```
 1)keyboard-select 
 2)url-select
