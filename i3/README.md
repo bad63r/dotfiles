@@ -22,9 +22,10 @@ on Debian based systems or more preciesly in this case Ubuntu.
 Configuration:
 * install Dunst `sudo apt-get install dunst`
 * add **.dunstrc** to your home folder
-* change notification manager going to
+* rest of the bullets below seems depricated by now[I have tried this on ubuntu 22.04 hp-elitebook 830 G8]
+  * change notification manager going to
 `sudo vim /usr/share/dbus-1/services/org.freedesktop.Notifications.service` and change _**exec**_ line to dunst location. Check dunst location with command called "whereis"
-* install fonts for better looking dunst: `sudo apt-get install fonts-hack-ttf`
+  * install fonts for better looking dunst: `sudo apt-get install fonts-hack-ttf`
 
 ### Fixing lid closed function
 
@@ -189,4 +190,10 @@ Tlp is active only when laptop is working on battery. As soon as you are on AC i
 	`#!/bin/bash `
 	`nitrogen --restore`
 
+### Keyboard layouts
+
+* After you install gxkb to support graphic depiction of setxkbmap you need to right click on setxkbmap to access its settings
+* By default last tab, enable system keybaord is disable. Enable it
+* Now all should work fine
+* if you dont want gxkb and setxkbmap together in system tray, just disable sys tray icon from the same settings
 
