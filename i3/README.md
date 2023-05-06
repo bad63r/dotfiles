@@ -197,3 +197,14 @@ Tlp is active only when laptop is working on battery. As soon as you are on AC i
 * Now all should work fine
 * if you dont want gxkb and setxkbmap together in system tray, just disable sys tray icon from the same settings
 
+### External display cursor issue(solution from stackoverflow)
+
+
+I ended up solving it myself (kind of). It's not the ultimate way, but it's a workaround that I can live with myself.
+Essentially, I took the original sources of the DMZ-Cursors package and created a fork of DMZ-Black, then I removed the 32x32 and 42x42 images, and am now using that as my cursor set.
+For convenience sake, I've put up my version of DMZ-Black on Github:  [LINK](https://github.com/codecat/dmzblack-96dpi)
+
+If you wish to do the same with DMZ-White, simply download the sources [here](https://bugs.launchpad.net/ubuntu/+archive/primary/+files/dmz-cursor-theme_0.4.3.tar.gz), copy DMZ-White, and remove all lines mentioning 32x32 and 42x42 in the *.in files. You can also remove the folders for those images if you want. Then simply run make.sh and copy the generated cursor files (in ../xcursors) to your cursors folder. (You can take my install script and change_cursor.sh as an example.)
+
+
+
