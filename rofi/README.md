@@ -2,7 +2,8 @@
 
 This is my config for rofi.
 
-Put _config, nord.rasi_ files in `~/.config/rofi/`. 
+* For thinkpad: Put _config, nord.rasi_ files from thinkpad folder in `~/.config/rofi/`. 
+* For elitebook: Put _config.rasi , nord.rasi_ files from hp-elitebook folder in `~/.config/rofi/`.
 
 Then afer that you can simply run program with:
 `bindsym $mod+d exec "rofi -show drun -terminal urxvt"
