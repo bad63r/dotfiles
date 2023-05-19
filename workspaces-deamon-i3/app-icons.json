@@ -20,6 +20,9 @@
     "fsearch": "list",
     "tlp-ui": "cogs",
     "skype": "skype",
-    "nitrogen": "wrench"
+    "nitrogen": "wrench",
+    "brave-browser":"chrome",
+    "qtcreator":"puzzle-piece",
+    "CompassHandlingModelUI":"cogs"
 
 }
