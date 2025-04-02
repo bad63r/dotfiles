@@ -14,5 +14,9 @@ PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 
 alias l='ls'
 alias ll='ls -la'
+alias fastfetch='fastfetch --color blue'
 
-export PATH="/home/bad63r/.local/bin:$PATH"
+#export PATH="/home/bad63r/.local/bin:/usr/lib/qt6/bin:$PATH"
+export QT_FORCE_STDERR_LOGGING=1
+export QT_LOGGING_RULES="org.kde.plasma.kicker=true"
+
