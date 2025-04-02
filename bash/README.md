@@ -1,3 +1,3 @@
-#My simple bashrc config
+# My simple bashrc config
 
 Copy .bashrc file into ~/.bashrc
