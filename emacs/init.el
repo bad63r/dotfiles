@@ -9,14 +9,24 @@
 
 (menu-bar-mode -1)            ; Disable the menu bar
 (auto-fill-mode -1)         ; Disables line breaks
+(setq find-file-dired nil) ; Disable to open directory in Dired Mode when searching with C-x C-F 
 
 (setq backup-directory-alist `(("." . "~/.saves"))) ; Backup files, send them to ~/.saves
+(setq make-backup-files nil)
+
+(defun goto-myconfig ()
+  (interactive)
+  (find-file "~/.emacs.d/init.el"))
+
+(global-set-key (kbd "C-x e") 'goto-myconfig) ; goto my Emacs config file
 
 ; Disabled C-x C-b keybinding which can accidentaly happen
 (global-unset-key (kbd "C-x C-b"))
 
 ;; Set up the visible bell
 (setq visible-bell t)
+
+(setq font-lock-maximum-decoration t)
 
 
 ;; Disable "_" as word spliter in syntax table
@@ -45,7 +55,6 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-
 ;; Enable smooth scrolling
 (setq scroll-step 1)
 ;;(setq scroll-margin 1)
@@ -67,13 +76,12 @@
     :ensure t
     :diminish dashboard-mode
     :config
-    (setq dashboard-banner-logo-title "your custom text")
+    ;;(setq dashboard-banner-logo-title "your custom text")
     (setq dashboard-startup-banner "/path/to/image")
+    
     (setq dashboard-items '((recents  . 10)
                             (bookmarks . 10)))
     (dashboard-setup-startup-hook))
-
-
 
 (defun helm-occur-insert-symbol-regexp ()
     (interactive)
@@ -95,9 +103,31 @@
 	("TAB" . helm-occur-insert-symbol-regexp))
   :config
   (helm-mode 1)
+  (setq helm-boring-buffer-regexp-list (list (rx "*") ))
 )
 (setq helm-buffer-max-length nil)
 (setq helm-find-files-sort-directories t)
+; Hide buffers 
+
+;; Makes *scratch* empty.
+(setq initial-scratch-message "")
+
+;; Removes *scratch* from buffer after the mode has been set.
+(defun remove-scratch-buffer ()
+  (if (get-buffer "*scratch*")
+      (kill-buffer "*scratch*")))
+(add-hook 'after-change-major-mode-hook 'remove-scratch-buffer)
+
+;; Removes *messages* from the buffer.
+;; (setq-default message-log-max nil)
+;; (kill-buffer "*Messages*")
+
+;; Removes *Completions* from buffer after you've opened a file.
+(add-hook 'minibuffer-exit-hook
+      '(lambda ()
+         (let ((buffer "*Completions*"))
+           (and (get-buffer buffer)
+                (kill-buffer buffer)))))
 
 (use-package helm-swoop
   :bind(
@@ -111,6 +141,8 @@
 ;; display correctly:
 ;;
 ;; M-x all-the-icons-install-fonts
+;; if it still now showing do:
+;; M-x nerd-the-icons-install-fonts
 (use-package all-the-icons)
 
 (use-package doom-modeline
@@ -120,8 +152,20 @@
 (use-package doom-themes
   :init (load-theme 'doom-dracula t))
 
-(use-package rainbow-delimiters
-  :hook (prog-mode . rainbow-delimiters-mode))
+
+(add-hook 'c-mode-hook
+          (lambda ()
+            (setq c-default-style "gnu"
+                  c-basic-offset 8)))
+
+(add-hook 'c++-mode-hook
+          (lambda ()
+            (setq c-default-style "gnu"
+                  c-basic-offset 8)))
+
+
+;; (use-package rainbow-delimiters
+;;   :hook (prog-mode . rainbow-delimiters-mode))
 
 (use-package which-key
   :init (which-key-mode)
@@ -140,30 +184,11 @@
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
 
-(use-package general
-  :config
-  (general-create-definer rune/leader-keys
-    :keymaps '(normal insert visual emacs)
-    :prefix "SPC"
-    :global-prefix "C-SPC")
-
-  (rune/leader-keys
-    "t"  '(:ignore t :which-key "toggles")
-    "tt" '(counsel-load-theme :which-key "choose theme")))
-
 ; Fix that visual mode selection is still active after right indent
 ; in evil mode
 (defun my/evil-shift-right ()
   (interactive)
   (evil-shift-right evil-visual-beginning evil-visual-end)
-  (evil-normal-state)
-  (evil-visual-restore))
-
-; Fix that visual mode selection is still active after left indent
-; in evil mode
-(defun my/evil-shift-left ()
-  (interactive)
-  (evil-shift-left evil-visual-beginning evil-visual-end)
   (evil-normal-state)
   (evil-visual-restore))
 
@@ -177,6 +202,7 @@
   (evil-mode 1)
   (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
+  (define-key evil-insert-state-map (kbd "C-/") 'yas-expand) ; expand yasnippets
 
   ;; Use visual line motions even outside of visual-line-mode buffers
   (evil-global-set-key 'motion "j" 'evil-next-visual-line)
@@ -212,8 +238,8 @@
   :bind-keymap
   ("C-c p" . projectile-command-map)
   :init
-  (when (file-directory-p "~/github/")
-    (setq projectile-project-search-path '("~/github")))
+  (when (file-directory-p "~/kde/src/")
+    (setq projectile-project-search-path '("~/kde/src/")))
   (setq projectile-switch-project-action #'projectile-find-file-dwim))
 
 (defun show-and-copy-file-name ()
@@ -256,4 +282,87 @@
     :config
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
+(use-package imenu-list
+  :config
+  (global-set-key (kbd "C-'") #'imenu-list-smart-toggle))
 
+;; (use-package company
+;;   :ensure t
+;;   :config (global-company-mode 1))
+
+
+(use-package yasnippet-snippets)
+
+(use-package yasnippet
+  :config
+  (yas-reload-all)
+  (add-hook 'prog-mode-hook #'yas-minor-mode))
+
+
+(use-package git-gutter
+  :hook (prog-mode . git-gutter-mode)
+  :config
+  (setq git-gutter:update-interval 0.02))
+
+(use-package git-gutter-fringe
+  :config
+  (define-fringe-bitmap 'git-gutter-fr:added [224] nil nil '(center repeated))
+  (define-fringe-bitmap 'git-gutter-fr:modified [224] nil nil '(center repeated))
+  (define-fringe-bitmap 'git-gutter-fr:deleted [128 192 224 240] nil nil 'bottom))
+
+(use-package qml-mode)
+
+(setq warning-minimum-level :emergency) ; set to display only emergency warning. it helps with qml-mode and lsp because
+					; there is some warnings there when opening 
+
+
+; Live syntax check; dependency for lsp-mode
+(use-package flycheck)
+
+(use-package lsp-mode
+  :init 
+  (setq lsp-keymap-prefix "C-c l") ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+         (qml-mode . lsp)
+         (c++-mode . lsp)
+         (c-mode . lsp)
+         (cc-mode . lsp)
+         ;; ;; if you want which-key integration
+         (lsp-mode . lsp-enable-which-key-integration))
+  :commands (lsp lsp-deferred))
+
+; needed for lsp to work better/optimisation/
+(setq gc-cons-threshold 100000000)
+
+
+
+;; (use-package lsp-mode
+;;   :init
+;;   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+;;   (setq lsp-keymap-prefix "C-c l")
+;;   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+;;          (qml-mode . lsp)
+;;          (c++-mode . lsp)
+;;          ;; ;; if you want which-key integration
+;;          (lsp-mode . lsp-enable-which-key-integration))
+;;   :commands lsp)
+
+
+;; ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ;; optionally							   ;;
+;;(use-package lsp-ui :commands lsp-ui-mode)				   ;;
+;; if you are helm user						   ;;
+;;(use-package helm-lsp :commands helm-lsp-workspace-symbol)		   ;;
+;; ;; if you are ivy user						   ;;
+;; (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)		   ;;
+;; (use-package lsp-treemacs :commands lsp-treemacs-errors-list)	   ;;
+;; 									   ;;
+;; ;; optionally if you want to use debugger				   ;;
+;; (use-package dap-mode)						   ;;
+;; ;; (use-package dap-LANGUAGE) to load the dap adapter for your language ;;
+;; 									   ;;
+;; ;; optional if you want which-key integration			   ;;
+;; (use-package which-key						   ;;
+;;     :config								   ;;
+;;     (which-key-mode))						   ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
