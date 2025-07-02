@@ -20,13 +20,51 @@
 
 (global-set-key (kbd "C-x e") 'goto-myconfig) ; goto my Emacs config file
 
+
 ; Disabled C-x C-b keybinding which can accidentaly happen
 (global-unset-key (kbd "C-x C-b"))
+
+(when (member "Source Code Pro" (font-family-list)) (set-frame-font "Source Code Pro-10" t t))
+(set-face-attribute 'default nil :height 100)     ;;Default font size %
+
+(setq locale-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+
+;; set registers / files alieases
+;; jump to file with <C-x r j>
+(set-register ?k '(file . "/home/bad63r/kde/src/plasma-desktop/applets/kicker/package/contents/ui/DashboardRepresentation.qml"))
+(set-register ?L '(file . "/home/bad63r/Documents/work/hexanalytics-core/src/language.c"))
+(set-register ?M '(file . "/home/bad63r/Documents/work/hexanalytics-core/src/mediation.c"))
 
 ;; Set up the visible bell
 (setq visible-bell t)
 
-(setq font-lock-maximum-decoration t)
+(setq font-lock-maximum-decoration 5)
+
+;; set C/C++ programming style
+(setq c-default-style "linux"
+  c-basic-offset 4)
+
+;; set to autocomplete pair brackets in C/C++ mode
+(electric-pair-mode t)
+
+; Switch automatically to newly created window
+(defun split-and-follow-horizontally ()
+  (interactive)
+  (split-window-below)
+  (balance-windows)
+  (other-window 1))
+(global-set-key (kbd "C-x 2") 'split-and-follow-horizontally)
+
+(defun split-and-follow-vertically ()
+  (interactive)
+  (split-window-right)
+  (balance-windows)
+  (other-window 1))
+(global-set-key (kbd "C-x 3") 'split-and-follow-vertically)
 
 
 ;; Disable "_" as word spliter in syntax table
@@ -60,7 +98,7 @@
 ;;(setq scroll-margin 1)
 
 ;; Display line numbers
-(column-number-mode)
+;;(column-number-mode)
 (global-display-line-numbers-mode t)
 
 ;; Disable display line numbers in some modes
@@ -94,6 +132,7 @@
 	("C-x b" . helm-buffers-list)
 	("C-x s" . helm-occur)
 	("C-x a" . helm-multi-swoop-all)
+	("C-x m" . helm-imenu)
 	:map helm-map
 	("C-j" . helm-next-line)
 	("C-k" . helm-previous-line)
@@ -108,6 +147,9 @@
 (setq helm-buffer-max-length nil)
 (setq helm-find-files-sort-directories t)
 ; Hide buffers 
+
+; imenu search menu appears even if cursor is on the function's name / not working all the time
+(setq helm-imenu-highlight-matches-around-point-max-lines 0)
 
 ;; Makes *scratch* empty.
 (setq initial-scratch-message "")
@@ -149,19 +191,21 @@
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 15)))
 
-(use-package doom-themes
-  :init (load-theme 'doom-dracula t))
+;; (use-package catppuccin-theme
+;;   :init (load-theme 'catppuccin :no-confirm))
+
+(use-package vscode-dark-plus-theme
+  :ensure t
+  :config
+  (load-theme 'vscode-dark-plus t)
+  (setq vscode-dark-plus-render-line-highlight 'line))
+
+;; Configure current line highlighting style (works best with Emacs 28 or newer)
 
 
-(add-hook 'c-mode-hook
-          (lambda ()
-            (setq c-default-style "gnu"
-                  c-basic-offset 8)))
-
-(add-hook 'c++-mode-hook
-          (lambda ()
-            (setq c-default-style "gnu"
-                  c-basic-offset 8)))
+;; (use-package monokai-theme
+;;   :ensure t
+;;   :config (load-theme 'monokai t))
 
 
 ;; (use-package rainbow-delimiters
@@ -197,7 +241,7 @@
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
   (setq evil-want-C-u-scroll t)
-  (setq evil-want-C-i-jump nil)
+  ;(setq evil-want-C-i-jump nil)
   :config
   (evil-mode 1)
   (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
@@ -224,6 +268,9 @@
   (evil-set-undo-system 'undo-tree)
   (global-undo-tree-mode 1))
 
+; Set Undo Tree not to make additional files
+(setq undo-tree-auto-save-history nil)
+
 (use-package evil-collection
   :after evil
   :config
@@ -248,7 +295,15 @@
   (kill-new (buffer-file-name))
   (message (buffer-file-name)))
 
+(defun my-revert-buffer-noconfirm ()
+  "Call `revert-buffer' with the NOCONFIRM argument set."
+  (interactive)
+  (revert-buffer t t))
+
+
 (global-set-key (kbd "C-c b") 'show-and-copy-file-name)
+(global-set-key (kbd "C-c n") 'ff-find-other-file)
+(global-set-key (kbd "C-c r") 'my-revert-buffer-noconfirm)
 
 ; Set easy-customization file path
 (setq custom-file "~/.emacs.d/emacs-custom.el")
@@ -286,9 +341,13 @@
   :config
   (global-set-key (kbd "C-'") #'imenu-list-smart-toggle))
 
-;; (use-package company
-;;   :ensure t
-;;   :config (global-company-mode 1))
+(use-package company
+  :ensure t
+  :config (global-company-mode 1))
+
+(use-package nyan-mode
+  :config
+  (nyan-mode 1))
 
 
 (use-package yasnippet-snippets)
