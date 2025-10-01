@@ -24,8 +24,24 @@
 ; Disabled C-x C-b keybinding which can accidentaly happen
 (global-unset-key (kbd "C-x C-b"))
 
+(defun mycustom/backward-kill-word ()
+  "Remove all whitespace if the character behind the cursor is whitespace, otherwise remove a word."
+  (interactive)
+  (if (looking-back "[ \n]")
+      ;; delete horizontal space before us and then check to see if we
+      ;; are looking at a newline
+      (progn (delete-horizontal-space 't)
+             (while (looking-back "[ \n]")
+               (backward-delete-char 1)))
+    ;; otherwise, just do the normal kill word.
+    (backward-kill-word 1)))
+
+;fixing ctrl-<backspace> behavior to delete until new line, not hungry delete
+(global-set-key  [C-backspace] 'mycustom/backward-kill-word)
+
 (when (member "Source Code Pro" (font-family-list)) (set-frame-font "Source Code Pro-10" t t))
 (set-face-attribute 'default nil :height 100)     ;;Default font size %
+
 
 (setq locale-coding-system 'utf-8)
 (set-terminal-coding-system 'utf-8)
@@ -35,7 +51,7 @@
 
 ;; set registers / files alieases
 ;; jump to file with <C-x r j>
-(set-register ?k '(file . "/home/bad63r/kde/src/plasma-desktop/applets/kicker/package/contents/ui/DashboardRepresentation.qml"))
+(set-register ?k '(file . "/home/bad63r/kde/src/plasma-desktop/applets/kicker/DashboardRepresentation.qml"))
 (set-register ?L '(file . "/home/bad63r/Documents/work/hexanalytics-core/src/language.c"))
 (set-register ?M '(file . "/home/bad63r/Documents/work/hexanalytics-core/src/mediation.c"))
 
@@ -44,20 +60,17 @@
 
 (setq font-lock-maximum-decoration 5)
 
-;; set C/C++ programming style
 (setq c-default-style "linux"
-  c-basic-offset 4)
+  c-basic-offset 2)
+
 
 ;; set to autocomplete pair brackets in C/C++ mode
 (electric-pair-mode t)
 
-; Switch automatically to newly created window
-(defun split-and-follow-horizontally ()
-  (interactive)
-  (split-window-below)
-  (balance-windows)
-  (other-window 1))
-(global-set-key (kbd "C-x 2") 'split-and-follow-horizontally)
+(defun my-c-mode-common-hook ()
+  (c-toggle-auto-newline 1))
+(add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
+
 
 (defun split-and-follow-vertically ()
   (interactive)
@@ -71,6 +84,7 @@
 (add-hook 'after-change-major-mode-hook
           (lambda ()
             (modify-syntax-entry ?_ "w")))
+
 
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
@@ -95,6 +109,7 @@
 
 ;; Enable smooth scrolling
 (setq scroll-step 1)
+(setq scroll-conservatively 101)
 ;;(setq scroll-margin 1)
 
 ;; Display line numbers
@@ -109,6 +124,12 @@
                 eshell-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
+(use-package highlight-indent-guides
+  :config
+  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+  (setq highlight-indent-guides-method 'bitmap)
+  (setq highlight-indent-guides-auto-character-face-perc 80))
+
 ; emacs welcoming screen
 (use-package dashboard
     :ensure t
@@ -121,6 +142,9 @@
                             (bookmarks . 10)))
     (dashboard-setup-startup-hook))
 
+;;you need to install package in Arch Linux in order for helm-do-grep-ag to work
+;;sudo pacman -S the_silver_searcher
+
 (defun helm-occur-insert-symbol-regexp ()
     (interactive)
     (helm-set-pattern (concat "\\_<" helm-input "\\_>")))
@@ -131,7 +155,7 @@
 	("M-x" . helm-M-x)
 	("C-x b" . helm-buffers-list)
 	("C-x s" . helm-occur)
-	("C-x a" . helm-multi-swoop-all)
+	("C-x a" . helm-do-grep-ag)
 	("C-x m" . helm-imenu)
 	:map helm-map
 	("C-j" . helm-next-line)
@@ -142,8 +166,11 @@
 	("TAB" . helm-occur-insert-symbol-regexp))
   :config
   (helm-mode 1)
-  (setq helm-boring-buffer-regexp-list (list (rx "*") ))
+  (setq helm-boring-buffer-regexp-list (list (rx "*") ) )
+  (helm-sources-using-default-as-input nil)
 )
+
+
 (setq helm-buffer-max-length nil)
 (setq helm-find-files-sort-directories t)
 ; Hide buffers 
@@ -171,11 +198,12 @@
            (and (get-buffer buffer)
                 (kill-buffer buffer)))))
 
-(use-package helm-swoop
-  :bind(
-  	:map helm-occur-map
-	     ("TAB" . helm-occur-insert-symbol-regexp))
-)
+; THIS IS Maybe NOT AVAILABLE ANYMORE
+;; (use-package helm-swoop
+;;   :bind(
+;;   	:map helm-occur-map
+;; 	     ("TAB" . helm-occur-insert-symbol-regexp))
+;; )
 
 
 ;; NOTE: The first time you load your configuration on a new machine, you'll
@@ -191,25 +219,27 @@
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 15)))
 
-;; (use-package catppuccin-theme
-;;   :init (load-theme 'catppuccin :no-confirm))
-
-(use-package vscode-dark-plus-theme
-  :ensure t
-  :config
-  (load-theme 'vscode-dark-plus t)
-  (setq vscode-dark-plus-render-line-highlight 'line))
-
-;; Configure current line highlighting style (works best with Emacs 28 or newer)
-
-
-;; (use-package monokai-theme
+;; (use-package solaire-mode
 ;;   :ensure t
-;;   :config (load-theme 'monokai t))
+;;   :config
+;;   (solaire-global-mode +1))
 
+;; (use-package vscode-dark-plus-theme
+;;   :ensure t
+;;   :config
+;;   (load-theme 'vscode-dark-plus t))
 
-;; (use-package rainbow-delimiters
-;;   :hook (prog-mode . rainbow-delimiters-mode))
+(use-package doom-themes
+  :ensure t
+  :custom
+  ;; Global settings (defaults)
+  (doom-themes-enable-bold t)   ; if nil, bold is universally disabled
+  (doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  ;; for treemacs users
+  (doom-themes-treemacs-theme "doom-atom") ; use "doom-colors" for less minimal icon theme
+  :config
+  (load-theme 'doom-one t))
+
 
 (use-package which-key
   :init (which-key-mode)
@@ -218,21 +248,29 @@
   (setq which-key-idle-delay 1))
 
 
-(use-package helpful
-  :custom
-  (counsel-describe-function-function #'helpful-callable)
-  (counsel-describe-variable-function #'helpful-variable)
-  :bind
-  ([remap describe-function] . counsel-describe-function)
-  ([remap describe-command] . helpful-command)
-  ([remap describe-variable] . counsel-describe-variable)
-  ([remap describe-key] . helpful-key))
+; THIS IS ANAVAILABLE AS WELL
+;; (use-package helpful
+;;   :custom
+;;   ;(counsel-describe-function-function #'helpful-callable)
+;;   ;(counsel-describe-variable-function #'helpful-variable)
+;;   :bind
+;;   ([remap describe-function] . counsel-describe-function)
+;;   ([remap describe-command] . helpful-command)
+;;   ;;([remap describe-variable] . counsel-describe-variable)
+;;   ([remap describe-key] . helpful-key))
 
 ; Fix that visual mode selection is still active after right indent
 ; in evil mode
 (defun my/evil-shift-right ()
   (interactive)
   (evil-shift-right evil-visual-beginning evil-visual-end)
+  (evil-normal-state)
+  (evil-visual-restore))
+
+
+(defun my/evil-shift-left ()
+  (interactive)
+  (evil-shift-left evil-visual-beginning evil-visual-end)
   (evil-normal-state)
   (evil-visual-restore))
 
@@ -246,7 +284,7 @@
   (evil-mode 1)
   (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
-  (define-key evil-insert-state-map (kbd "C-/") 'yas-expand) ; expand yasnippets
+  ;(define-key evil-insert-state-map (kbd "C-/") 'yas-expand) ; expand yasnippets
 
   ;; Use visual line motions even outside of visual-line-mode buffers
   (evil-global-set-key 'motion "j" 'evil-next-visual-line)
@@ -309,20 +347,10 @@
 (setq custom-file "~/.emacs.d/emacs-custom.el")
 (load custom-file)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; (use-package elpy								   ;;	        ;;
-;;   :custom									   ;;	        ;;
-;;   (elpy-rpc-virtualenv-path 'current)					   ;;	        ;;
-;;   (elpy-shell-display-buffer-after-send t)					   ;;	        ;;
-;;   (python-shell-interpreter "python3")					   ;;	        ;;
-;;   (elpy-rpc-python-command "python3")					   ;;	        ;;
-;;   :init (advice-add 'python-mode :before 'elpy-enable)			   ;;	        ;;
-;;   :config									   ;;	        ;;
-;;   (setenv "PYTHONBREAKPOINT" "ipdb.set_trace")				   ;;	        ;;
-;;   (add-hook 'elpy-mode-hook (lambda () (electric-indent-local-mode -1)))	   ;;	        ;;
-;;   (add-hook 'elpy-mode-hook (lambda () (elpy-shell-toggle-dedicated-shell 1)))) ;;	        ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(hide-ifdef-mode 1) 
+(setq hide-ifdef-shadow t)
+(add-hook 'prog-mode-hook 'hide-ifdefs)
 
 ; set italic, bold more beautiful in org mode
 (setq org-hide-emphasis-markers t)
@@ -339,7 +367,10 @@
 
 (use-package imenu-list
   :config
-  (global-set-key (kbd "C-'") #'imenu-list-smart-toggle))
+  (global-set-key (kbd "C-'") #'imenu-list-smart-toggle)
+  (setq imenu-list-position 'left)
+  (setq imenu-list-focus-after-activation 'true)
+  (setq imenu-list-size 0.2))
 
 (use-package company
   :ensure t
@@ -349,13 +380,12 @@
   :config
   (nyan-mode 1))
 
+;; (use-package yasnippet-snippets)
 
-(use-package yasnippet-snippets)
-
-(use-package yasnippet
-  :config
-  (yas-reload-all)
-  (add-hook 'prog-mode-hook #'yas-minor-mode))
+;; (use-package yasnippet
+;;   :config
+;;   (yas-reload-all)
+;;   (add-hook 'prog-mode-hook #'yas-minor-mode))
 
 
 (use-package git-gutter
@@ -392,36 +422,15 @@
 
 ; needed for lsp to work better/optimisation/
 (setq gc-cons-threshold 100000000)
+;(setq lsp-semantic-tokens-enable t) ;grayout not present code inside #ifdef procedure
 
+(defun desperately-compile ()
+  "Traveling up the path, find a Makefile and `compile'."
+  (interactive)
+  (when (locate-dominating-file default-directory "CMakeLists.txt")
+  (with-temp-buffer
+    (cd (locate-dominating-file default-directory "CMakeLists.txt"))
+    (compile "cmake --build ./build/ && ./build/test"))))
 
+(global-set-key [f5] 'desperately-compile)
 
-;; (use-package lsp-mode
-;;   :init
-;;   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-;;   (setq lsp-keymap-prefix "C-c l")
-;;   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-;;          (qml-mode . lsp)
-;;          (c++-mode . lsp)
-;;          ;; ;; if you want which-key integration
-;;          (lsp-mode . lsp-enable-which-key-integration))
-;;   :commands lsp)
-
-
-;; ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ;; optionally							   ;;
-;;(use-package lsp-ui :commands lsp-ui-mode)				   ;;
-;; if you are helm user						   ;;
-;;(use-package helm-lsp :commands helm-lsp-workspace-symbol)		   ;;
-;; ;; if you are ivy user						   ;;
-;; (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)		   ;;
-;; (use-package lsp-treemacs :commands lsp-treemacs-errors-list)	   ;;
-;; 									   ;;
-;; ;; optionally if you want to use debugger				   ;;
-;; (use-package dap-mode)						   ;;
-;; ;; (use-package dap-LANGUAGE) to load the dap adapter for your language ;;
-;; 									   ;;
-;; ;; optional if you want which-key integration			   ;;
-;; (use-package which-key						   ;;
-;;     :config								   ;;
-;;     (which-key-mode))						   ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
