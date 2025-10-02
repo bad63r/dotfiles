@@ -2,17 +2,18 @@
 (setq inhibit-startup-message t)
 
 
-(scroll-bar-mode -1)        ; Disable visible scrollbar
-(tool-bar-mode -1)          ; Disable the toolbar
-(tooltip-mode -1)           ; Disable tooltips
-(set-fringe-mode 10)        ; Give some breathing room
+(scroll-bar-mode -1)		; Disable visible scrollbar
+(tool-bar-mode -1)		; Disable the toolbar
+(tooltip-mode -1)		; Disable tooltips
+(set-fringe-mode 10)		; Give some breathing room
 
-(menu-bar-mode -1)            ; Disable the menu bar
-(auto-fill-mode -1)         ; Disables line breaks
-(setq find-file-dired nil) ; Disable to open directory in Dired Mode when searching with C-x C-F 
+(menu-bar-mode -1)		; Disable the menu bar
+(auto-fill-mode -1)		; Disables line breaks
+(setq find-file-dired nil)	; Disable to open directory in Dired Mode when searching with C-x C-F 
 
-(setq backup-directory-alist `(("." . "~/.saves"))) ; Backup files, send them to ~/.saves
+(setq backup-directory-alist `(("." . "~/.saves")))	; backup files, send them to ~/.saves
 (setq make-backup-files nil)
+(setq help-window-select t)				; automatically select/focus help window on pop up
 
 (defun goto-myconfig ()
   (interactive)
@@ -23,6 +24,16 @@
 
 ; Disabled C-x C-b keybinding which can accidentaly happen
 (global-unset-key (kbd "C-x C-b"))
+
+(defun kill-buffer-other-window ()
+  (interactive)
+  (let ((win-curr (selected-window)))
+    (switch-to-buffer-other-window "foo")
+    (kill-this-buffer)
+    (kill-this-buffer)
+    (select-window win-curr)))
+
+(global-set-key (kbd "C-x K") 'kill-buffer-other-window) ; kill buffer in other window
 
 (defun mycustom/backward-kill-word ()
   "Remove all whitespace if the character behind the cursor is whitespace, otherwise remove a word."
@@ -219,16 +230,6 @@
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 15)))
 
-;; (use-package solaire-mode
-;;   :ensure t
-;;   :config
-;;   (solaire-global-mode +1))
-
-;; (use-package vscode-dark-plus-theme
-;;   :ensure t
-;;   :config
-;;   (load-theme 'vscode-dark-plus t))
-
 (use-package doom-themes
   :ensure t
   :custom
@@ -284,6 +285,8 @@
   (evil-mode 1)
   (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
+  (define-key evil-normal-state-map (kbd "C-j") 'next-buffer)
+  (define-key evil-normal-state-map (kbd "C-k") 'previous-buffer)
   ;(define-key evil-insert-state-map (kbd "C-/") 'yas-expand) ; expand yasnippets
 
   ;; Use visual line motions even outside of visual-line-mode buffers
@@ -351,6 +354,8 @@
 (hide-ifdef-mode 1) 
 (setq hide-ifdef-shadow t)
 (add-hook 'prog-mode-hook 'hide-ifdefs)
+
+(add-hook 'prog-mode-hook 'hl-line-mode)
 
 ; set italic, bold more beautiful in org mode
 (setq org-hide-emphasis-markers t)
@@ -433,4 +438,5 @@
     (compile "cmake --build ./build/ && ./build/test"))))
 
 (global-set-key [f5] 'desperately-compile)
+(add-hook 'compilation-filter-hook #'ansi-color-compilation-filter) ; add colors to compilation window
 
